@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sujay.AI - WordPress Developer & SEO Expert</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --su-primary: #3b82f6;
+      --su-accent: #2563eb;
+      --su-bg-light: #f8fafc;
+      --su-bg-dark: #1e293b;
+      --su-bg-gradient: linear-gradient(135deg, #3b82f6 0%, #7dd3fc 100%);
+      --su-card-bg: #ffffff;
+      --su-text: #1f2937;
+      --su-text-muted: #6b7280;
+      --su-border: #e5e7eb;
+      --su-footer-bg: #0f172a;
+      --su-footer-text: #e2e8f0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--su-bg-light);
+      color: var(--su-text);
+      min-width: 320px;
+    }
+    .nav-link-active {
+      background: var(--su-bg-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      border-bottom: 2px solid transparent;
+    }
+    .section {
+      padding-top: 5rem;
+      padding-bottom: 4rem;
+    }
+    .icon-placeholder {
+      width: 48px;
+      height: 48px;
+      background: var(--su-bg-gradient);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+    .glow-on-hover {
+      transition: all 0.3s ease;
+    }
+    .glow-on-hover:hover {
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+      transform: translateY(-4px);
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-slideIn {
+      animation: slideIn 0.6s ease-out forwards;
+    }
+    .animate-fadeInScale {
+      animation: fadeInScale 0.5s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-[var(--su-bg-light)] text-[var(--su-text)]">
+  <header class="bg-[var(--su-card-bg)] shadow-lg fixed left-0 right-0 top-0 z-50 h-[80px] flex items-center">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <a class="text-3xl font-bold bg-[var(--su-bg-gradient)] bg-clip-text text-transparent" href="#">Sujay.AI</a>
+      <nav class="hidden lg:flex items-center space-x-10">
+        <a href="#hero" class="nav-item text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent pb-2 border-b-2 border-transparent font-medium transition-all duration-300">Home</a>
+        <a href="#about" class="nav-item text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent pb-2 border-b-2 border-transparent font-medium transition-all duration-300">About</a>
+        <a href="#services" class="nav-item text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent pb-2 border-b-2 border-transparent font-medium transition-all duration-300">Services</a>
+        <a href="#portfolio" class="nav-item text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent pb-2 border-b-2 border-transparent font-medium transition-all duration-300">Portfolio</a>
+        <a href="#achievements" class="nav-item text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent pb-2 border-b-2 border-transparent font-medium transition-all duration-300">Achievements</a>
+        <a href="#why-sujay" class="nav-item text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent pb-2 border-b-2 border-transparent font-medium transition-all duration-300">Why Sujay</a>
+        <a href="#contact" class="nav-item text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent pb-2 border-b-2 border-transparent font-medium transition-all duration-300">Contact</a>
+      </nav>
+      <button class="lg:hidden mobile-nav-toggle text-3xl text-[var(--su-text-muted)]" aria-label="Open main menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+    <nav id="mobileMenu" class="mobile-menu hidden lg:hidden absolute top-[80px] left-0 right-0 bg-[var(--su-card-bg)] shadow-2xl flex-col py-6 animate-fadeInScale z-40">
+      <a href="#hero" class="block px-6 py-3 text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent font-medium">Home</a>
+      <a href="#about" class="block px-6 py-3 text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent font-medium">About</a>
+      <a href="#services" class="block px-6 py-3 text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent font-medium">Services</a>
+      <a href="#portfolio" class="block px-6 py-3 text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent font-medium">Portfolio</a>
+      <a href="#achievements" class="block px-6 py-3 text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent font-medium">Achievements</a>
+      <a href="#why-sujay" class="block px-6 py-3 text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent font-medium">Why Sujay</a>
+      <a href="#contact" class="block px-6 py-3 text-[var(--su-text)] hover:bg-[var(--su-bg-gradient)] hover:bg-clip-text hover:text-transparent font-medium">Contact</a>
+    </nav>
+  </header>
+
+  <main class="pt-[80px]">
+    <section id="hero" class="section bg-gradient-to-br from-[#3b82f6] to-[#7dd3fc] min-h-[400px] flex flex-col items-center justify-center text-center py-24">
+      <div class="container mx-auto px-4 animate-slideIn">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">Expert WordPress Developer & SEO Specialist</h1>
+        <p class="text-white text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed opacity-90">Building high-performance, SEO-optimized WordPress websites that drive traffic, engagement, and conversions.</p>
+        <a class="bg-white text-[var(--su-primary)] hover:bg-[var(--su-accent)] hover:text-white font-semibold py-3 px-10 rounded-full text-lg transition-all duration-300 shadow-lg glow-on-hover" href="#contact">Get Started</a>
+      </div>
+    </section>
+
+    <section id="about" class="section bg-[var(--su-bg-light)]">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 text-[var(--su-text)] animate-slideIn">About Sujay</h2>
+        <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
+          <div class="text-[var(--su-text-muted)] space-y-5 animate-slideIn" style="animation-delay: 0.2s;">
+            <p>With <strong class="text-[var(--su-primary)] font-semibold">over five years of web development experience</strong>, I create websites that combine stunning design, robust functionality, and SEO excellence.</p>
+            <p>My expertise in WordPress includes <strong class="text-[var(--su-primary)] font-semibold">custom themes, plugin development, and seamless migrations</strong>, ensuring secure and scalable solutions.</p>
+          </div>
+          <div class="text-[var(--su-text-muted)] space-y-5 animate-slideIn" style="animation-delay: 0.4s;">
+            <h3 class="text-[var(--su-primary)] text-2xl font-semibold mb-3">SEO & Content Mastery</h3>
+            <p>I specialize in <strong class="text-[var(--su-primary)] font-semibold">keyword research, on-page SEO</strong>, and content strategies that boost organic traffic and user engagement.</p>
+            <p>My mission is to deliver websites that serve as powerful business assets, driving measurable results.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section bg-[var(--su-bg-light)]">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 text-[var(--su-text)] animate-slideIn">Core Services</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl p-8 shadow-lg glow-on-hover animate-slideIn flex flex-col">
+            <div class="icon-placeholder">WD</div>
+            <h3 class="text-xl font-semibold text-[var(--su-text)] mb-3">Custom WordPress Development</h3>
+            <ul class="list-disc list-inside text-[var(--su-text-muted)] text-sm space-y-2 leading-relaxed">
+              <li>Responsive, cross-device design</li>
+              <li>Custom themes and full-site builds</li>
+              <li>E-commerce solutions (WooCommerce)</li>
+            </ul>
+          </div>
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl p-8 shadow-lg glow-on-hover animate-slideIn" style="animation-delay: 0.2s;">
+            <div class="icon-placeholder">SEO</div>
+            <h3 class="text-xl font-semibold text-[var(--su-text)] mb-3">SEO & Content Strategy</h3>
+            <ul class="list-disc list-inside text-[var(--su-text-muted)] text-sm space-y-2 leading-relaxed">
+              <li>Advanced keyword & competitor analysis</li>
+              <li>On-page SEO (meta tags, headers)</li>
+              <li>Engaging content creation</li>
+            </ul>
+          </div>
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl p-8 shadow-lg glow-on-hover animate-slideIn" style="animation-delay: 0.4s;">
+            <img src="https://placehold.co/48x48/3b82f6/ffffff?text=PS" alt="Performance & Security Icon" class="w-12 h-12 mb-6 rounded">
+            <h3 class="text-xl font-semibold text-[var(--su-text)] mb-3">Performance & Security</h3>
+            <ul class="list-disc list-inside text-[var(--su-text-muted)] text-sm space-y-2 leading-relaxed">
+              <li>Speed optimization (caching, CDN)</li>
+              <li>SSL, firewalls, and security audits</li>
+              <li>Reliable backups & staging</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio" class="section bg-[var(--su-bg-light)]">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 text-[var(--su-text)] animate-slideIn">Work Samples</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <a href="https://airdropbounty.events" target="_blank" rel="noopener" class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl shadow-lg overflow-hidden flex flex-col glow-on-hover animate-slideIn no-underline">
+            <img src="https://placehold.co/600x400/7dd3fc/1e293b?text=AirdropBounty" alt="AirdropBounty.events screenshot" class="w-full h-48 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg text-[var(--su-text)] mb-2">AirdropBounty.events</h3>
+              <p class="text-[var(--su-text-muted)] text-sm mb-4 flex-grow">Crypto airdrop and bounty platform.</p>
+              <span class="bg-[var(--su-bg-gradient)] text-white font-medium text-sm py-2 px-4 rounded-full self-start transition-all duration-300 glow-on-hover">View Project</span>
+            </div>
+          </a>
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl shadow-lg overflow-hidden flex flex-col glow-on-hover animate-slideIn" style="animation-delay: 0.2s;">
+            <a href="https://pixelproduction.com" target="_blank" rel="noopener" class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl shadow-lg overflow-hidden flex flex-col glow-on-hover animate-slideIn no-underline">
+            <img src="https://placehold.co/600x400/7dd3fc/1e293b?text=PixelProduction" alt="AirdropBounty.events screenshot" class="w-full h-48 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg text-[var(--su-text)] mb-2">PixelProduction.com</h3>
+              <p class="text-[var(--su-text-muted)] text-sm mb-4 flex-grow">Creative media production services.</p>
+              <span class="bg-[var(--su-bg-gradient)] text-white font-medium text-sm py-2 px-4 rounded-full self-start transition-all duration-300 glow-on-hover">View Project</span>
+            </div>
+          </a>
+          </div>
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl shadow-lg overflow-hidden flex flex-col glow-on-hover animate-slideIn" style="animation-delay: 0.4s;">
+            <a href="https://seoplusmedia.com" target="_blank" rel="noopener" class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl shadow-lg overflow-hidden flex flex-col glow-on-hover animate-slideIn no-underline">
+            <img src="https://placehold.co/600x400/7dd3fc/1e293b?text=SEOPlus" alt="AirdropBounty.events screenshot" class="w-full h-48 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg text-[var(--su-text)] mb-2">SEOPlusMedia.com</h3>
+              <p class="text-[var(--su-text-muted)] text-sm mb-4 flex-grow">Digital marketing and SEO agency.</p>
+              <span class="bg-[var(--su-bg-gradient)] text-white font-medium text-sm py-2 px-4 rounded-full self-start transition-all duration-300 glow-on-hover">View Project</span>
+            </div>
+          </a>
+          </div>
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl shadow-lg overflow-hidden flex flex-col glow-on-hover animate-slideIn" style="animation-delay: 0.6s;">
+          <a href="https://zestofmusic.github.io" target="_blank" rel="noopener" class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl shadow-lg overflow-hidden flex flex-col glow-on-hover animate-slideIn no-underline">
+            <img src="https://placehold.co/600x400/7dd3fc/1e293b?text=ZestOfMusic" alt="AirdropBounty.events screenshot" class="w-full h-48 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="font-semibold text-lg text-[var(--su-text)] mb-2">ZestOfMusic</h3>
+              <p class="text-[var(--su-text-muted)] text-sm mb-4 flex-grow">Showcase of personal projects.</p>
+              <span class="bg-[var(--su-bg-gradient)] text-white font-medium text-sm py-2 px-4 rounded-full self-start transition-all duration-300 glow-on-hover">View Project</span>
+            </div>
+          </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="achievements" class="section bg-gradient-to-br from-[#3b82f6] to-[#7dd3fc]">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 text-white animate-slideIn">Notable Achievements</h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl p-8 shadow-lg glow-on-hover animate-slideIn">
+            <h3 class="text-xl font-semibold text-[var(--su-primary)] mb-2">Five-Star Client Reviews</h3>
+            <p class="text-[var(--su-text-muted)] text-sm leading-relaxed">Recognized for timely delivery, clear communication, and impactful SEO results.</p>
+          </div>
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl p-8 shadow-lg glow-on-hover animate-slideIn" style="animation-delay: 0.2s;">
+            <h3 class="text-xl font-semibold text-[var(--su-primary)] mb-2">100% Satisfaction Rate</h3>
+            <p class="text-[var(--su-text-muted)] text-sm leading-relaxed">Achieved <strong class="font-medium text-[var(--su-text)]">25–40% organic session growth</strong> within three months for migrations and overhauls.</p>
+          </div>
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl p-8 shadow-lg glow-on-hover animate-slideIn" style="animation-delay: 0.4s;">
+            <h3 class="text-xl font-semibold text-[var(--su-primary)] mb-2">Content & Conversion Wins</h3>
+            <p class="text-[var(--su-text-muted)] text-sm leading-relaxed">Elevated a lifestyle blog to page 1 for key terms in six weeks.</p>
+          </div>
+          <div class="bg-[var(--su-card-bg)] border border-[var(--su-border)] rounded-2xl p-8 shadow-lg glow-on-hover animate-slideIn" style="animation-delay: 0.6s;">
+            <h3 class="text-xl font-semibold text-[var(--su-primary)] mb-2">Lead Generation Success</h3>
+            <p class="text-[var(--su-text-muted)] text-sm leading-relaxed">Increased mailing-list sign-ups by over 50% with optimized landing pages.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-sujay" class="section bg-[var(--su-bg-light)]">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 text-[var(--su-text)] animate-slideIn">Why Work With Sujay?</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+          <div class="p-6 glow-on-hover animate-slideIn">
+            <img src="https://placehold.co/48x48/3b82f6/ffffff?text=HA" alt="Holistic Approach Icon" class="w-12 h-12 mx-auto mb-6 rounded">
+            <h3 class="text-xl font-semibold text-[var(--su-text)] mb-3">Holistic Approach</h3>
+            <p class="text-[var(--su-text-muted)] text-sm leading-relaxed">I integrate design, content, and SEO to create websites that elevate your brand.</p>
+          </div>
+          <div class="p-6 glow-on-hover animate-slideIn" style="animation-delay: 0.2s;">
+            <img src="https://placehold.co/48x48/3b82f6/ffffff?text=CC" alt="Clear Communication Icon" class="w-12 h-12 mx-auto mb-6 rounded">
+            <h3 class="text-xl font-semibold text-[var(--su-text)] mb-3">Clear Communication</h3>
+            <p class="text-[var(--su-text-muted)] text-sm leading-relaxed">Regular updates and jargon-free explanations keep you informed every step of the way.</p>
+          </div>
+          <div class="p-6 glow-on-hover animate-slideIn" style="animation-delay: 0.4s;">
+            <img src="https://placehold.co/48x48/3b82f6/ffffff?text=LP" alt="Long-Term Partnership Icon" class="w-12 h-12 mx-auto mb-6 rounded">
+            <h3 class="text-xl font-semibold text-[var(--su-text)] mb-3">Long-Term Partnership</h3>
+            <p class="text-[var(--su-text-muted)] text-sm leading-relaxed">I offer ongoing support, tweaks, and performance monitoring beyond the initial launch to keep your site growing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section bg-[var(--su-bg-dark)] text-[var(--su-footer-text)] py-20">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold mb-6 text-white animate-slideIn">Ready to Transform Your Online Presence?</h2>
+        <p class="text-lg mb-10 max-w-2xl mx-auto opacity-90">Let's collaborate to create a website that drives results. Contact me today!</p>
+        <a class="bg-[var(--su-bg-gradient)] text-white font-semibold py-3 px-10 rounded-full text-lg transition-all duration-300 shadow-lg glow-on-hover animate-slideIn" href="https://www.fiverr.com/s/LdWgxgL" target="_blank">Explore My Fiverr Gig</a>
+        <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-12">
+          <div class="bg-[#1e293b] border border-[#334155] rounded-2xl p-8 glow-on-hover animate-slideIn">
+            <h4 class="text-white font-semibold text-lg mb-2">Typical Turnaround</h4>
+            <p class="text-sm opacity-90">7–14 days, tailored to project complexity.</p>
+          </div>
+          <div class="bg-[#1e293b] border border-[#334155] rounded-2xl p-8 glow-on-hover animate-slideIn" style="animation-delay: 0.2s;">
+            <h4 class="text-white font-semibold text-lg mb-2">Packages</h4>
+            <p class="text-sm opacity-90">From SEO audits to custom builds with ongoing support options.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[var(--su-footer-bg)] text-[var(--su-footer-text)] py-10 text-center">
+    <div class="container mx-auto px-4">
+      <p class="mb-2 text-sm">© 2025 Sujay.AI. All rights reserved.</p>
+      <p class="text-xs opacity-80">Crafted with <span class="text-[#f43f5e]">♥</span> and Innovation</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const toggleButton = document.querySelector('.mobile-nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (toggleButton && mobileMenu) {
+      toggleButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('flex');
+        if (mobileMenu.classList.contains('hidden')) {
+          toggleButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                    </svg>`;
+          toggleButton.setAttribute('aria-label', 'Open main menu');
+        } else {
+          toggleButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                    </svg>`;
+          toggleButton.setAttribute('aria-label', 'Close main menu');
+        }
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('flex');
+          toggleButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                                    </svg>`;
+          toggleButton.setAttribute('aria-label', 'Open main menu');
+        });
+      });
+    }
+
+    // Scrollspy for nav links
+    const navLinks = document.querySelectorAll('header nav a.nav-item');
+    const mobileNavLinks = document.querySelectorAll('#mobileMenu a');
+    const allNavLinks = [...navLinks, ...mobileNavLinks];
+
+    const sections = [];
+    allNavLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#') && href.length > 1) {
+        const section = document.querySelector(href);
+        if (section && !sections.find(s => s.id === section.id)) {
+          sections.push({
+            id: section.id,
+            element: section,
+            linkDesktop: document.querySelector(`header nav a.nav-item[href="#${section.id}"]`),
+            linkMobile: document.querySelector(`#mobileMenu a[href="#${section.id}"]`)
+          });
+        }
+      }
+    });
+
+    function highlightNav() {
+      const scrollY = window.pageYOffset;
+      const headerHeight = document.querySelector('header')?.offsetHeight + 30 || 80;
+
+      sections.forEach(current => {
+        if (!current.element) return;
+        const sectionHeight = current.element.offsetHeight;
+        const sectionTop = current.element.offsetTop - headerHeight;
+        const isActive = scrollY >= sectionTop && scrollY <= sectionTop + sectionHeight;
+
+        if (current.linkDesktop) {
+          current.linkDesktop.classList.toggle('nav-link-active', isActive);
+          if (!isActive) {
+            current.linkDesktop.style.background = '';
+            current.linkDesktop.style.webkitTextFillColor = '';
+          }
+        }
+        if (current.linkMobile) {
+          current.linkMobile.classList.toggle('nav-link-active', isActive);
+          if (!isActive) {
+            current.linkMobile.style.background = '';
+            current.linkMobile.style.webkitTextFillColor = '';
+          }
+        }
+      });
+
+      if (sections[0] && scrollY < sections[0].element.offsetTop - headerHeight) {
+        if (sections[0].linkDesktop) sections[0].linkDesktop.classList.add('nav-link-active');
+        if (sections[0].linkMobile) sections[0].linkMobile.classList.add('nav-link-active');
+      }
+
+      const totalPageHeight = document.body.scrollHeight;
+      const viewportHeight = window.innerHeight;
+      if (scrollY + viewportHeight >= totalPageHeight - 50) {
+        const lastSection = sections[sections.length - 1];
+        allNavLinks.forEach(link => link.classList.remove('nav-link-active'));
+        if (lastSection?.linkDesktop) lastSection.linkDesktop.classList.add('nav-link-active');
+        if (lastSection?.linkMobile) lastSection.linkMobile.classList.add('nav-link-active');
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      try {
+        highlightNav();
+      } catch (error) {
+        console.error('Scrollspy error:', error);
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        highlightNav();
+      } catch (error) {
+        console.error('Initial scrollspy error:', error);
+      }
+
+      document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+          const src = this.src;
+          const match = src.match(/(\d+)x(\d+)/);
+          const width = match ? parseInt(match[1]) || 100 : 100;
+          const height = match ? parseInt(match[2]) || 100 : 100;
+          this.src = `https://placehold.co/${width}x${height}/e5e7eb/6b7280?text=Not+Found`;
+          this.alt = 'Image not found';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
