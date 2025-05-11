@@ -3,34 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sujay.AI - WordPress Developer & SEO Expert | Modern Portfolio</title>
+  <title>Holistic.ai | Digital Solutions</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --su-primary: #1d4ed8; /* Darker blue for better contrast */
-      --su-primary-darker: #1e40af; /* Blue 700 */
-      --su-secondary: #10b981; /* Emerald 500 */
-      --su-accent: #7c3aed; /* Violet 600 */
-      --su-bg-light: #f9fafb; /* Gray 50 */
-      --su-bg-dark: #111827; /* Gray 900 */
+      --su-primary: #2563eb; /* Vibrant blue */
+      --su-primary-light: #3b82f6;
+      --su-primary-dark: #1d4ed8;
+      --su-secondary: #06b6d4; /* Cyan */
+      --su-accent: #6366f1; /* Indigo */
+      --su-accent-new: #14B8A6; /* Vibrant Teal - New Accent */
+      --su-bg-light: #f8fafc; /* Light gray, almost white */
+      --su-bg-dark: #0f172a; /* Dark blue */
       --su-card-bg: #ffffff; /* White */
-      --su-text-light: #f3f4f6; /* Gray 100 */
-      --su-text-dark: #1f2937; /* Gray 800 */
-      --su-text-muted: #6b7280; /* Gray 500 */
-      --su-border: #e5e7eb; /* Gray 200 */
-      --su-footer-bg: #0c1320; /* Darker footer */
-      --su-footer-text: #cbd5e1; /* Slate 300 */
+      --su-text-light: #f1f5f9;
+      --su-text-dark: #1e293b;
+      --su-text-muted: #64748b;
+      --su-border: #e2e8f0;
       
       --su-gradient-primary: linear-gradient(135deg, var(--su-primary) 0%, var(--su-accent) 100%);
-      --su-gradient-secondary: linear-gradient(135deg, var(--su-secondary) 0%, #2dd4bf 100%);
-      --su-gradient-hero: linear-gradient(135deg, var(--su-primary) 0%, var(--su-primary-darker) 40%, var(--su-accent) 100%);
+      --su-gradient-secondary: linear-gradient(135deg, var(--su-secondary) 0%, var(--su-accent-new) 100%);
+      --su-gradient-hero: linear-gradient(135deg, var(--su-primary-dark) 0%, var(--su-primary) 30%, var(--su-accent) 70%, var(--su-accent-new) 100%);
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Inter', sans-serif;
       background-color: var(--su-bg-light);
       color: var(--su-text-dark);
       min-width: 320px;
@@ -38,241 +38,213 @@
       position: relative;
     }
 
-    /* Noise texture for dark sections */
-    section[id="contact"],
-    section[id="achievements"] {
-      position: relative;
-    }
-    section[id="contact"]::before,
-    section[id="achievements"]::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.05"/%3E%3C/svg%3E');
-      z-index: 0;
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Poppins', sans-serif;
     }
 
-    /* Navigation Link Styling */
     .nav-item {
-      transition: all 0.3s ease;
       position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding-bottom: 6px; /* Increased padding for underline */
     }
     .nav-item::after {
       content: '';
       position: absolute;
       width: 0;
-      height: 2px;
-      bottom: -2px;
+      height: 3px;
+      bottom: 0px; /* Adjusted for padding */
       left: 50%;
       transform: translateX(-50%);
       background: var(--su-gradient-primary);
-      transition: width 0.3s ease-in-out;
+      transition: width 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border-radius: 3px;
     }
     .nav-item:hover::after,
     .nav-item.nav-link-active::after {
       width: 70%;
     }
     .nav-item.nav-link-active {
-      font-weight: 600;
-      background: var(--su-gradient-primary);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-    }
-    .nav-item:hover:not(.nav-link-active) {
+      font-weight: 700; /* Bolder active link */
       color: var(--su-primary);
     }
-    .nav-item:focus {
-      outline: 2px solid var(--su-primary);
-      outline-offset: 2px;
-    }
-    #mobileMenu .nav-item.nav-link-active {
-      background: var(--su-gradient-primary);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      color: transparent;
-      border-left: 3px solid var(--su-primary);
-      padding-left: calc(1.5rem - 3px);
-    }
-    #mobileMenu .nav-item:hover:not(.nav-link-active) {
-      color: var(--su-primary);
-      background-color: #f0f4ff;
-    }
 
-    .section {
-      padding-top: 8rem;
-      padding-bottom: 6rem;
-      position: relative;
-      animation: fadeInSection 1s ease-out;
-    }
-
-    /* Modernized Icon Container */
-    .service-icon-container {
-      width: 4.5rem;
-      height: 4.5rem;
-      background: var(--su-gradient-primary);
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 6px 20px rgba(29, 78, 216, 0.25);
-      transition: all 0.3s ease;
-    }
-    .service-icon-container:hover {
-      transform: scale(1.1);
-    }
-    .service-icon-container svg {
-      width: 2.25rem;
-      height: 2.25rem;
-      color: white;
-    }
-
-    /* Card Styles & Hover Effects */
     .content-card {
       background-color: var(--su-card-bg);
+      border-radius: 20px; /* More rounded */
+      padding: 2.5rem; /* Increased padding */
+      box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.03), 0 3px 7px -3px rgba(0, 0, 0, 0.03);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       border: 1px solid var(--su-border);
-      border-radius: 1rem;
-      padding: 2.5rem;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .content-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--su-gradient-primary);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    .content-card:hover::before {
-      opacity: 1;
     }
     .content-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 24px rgba(29, 78, 216, 0.2);
-      border-color: var(--su-primary);
+      transform: translateY(-10px) scale(1.03); /* More pronounced hover */
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      border-color: var(--su-primary-light);
     }
-    .portfolio-card:hover img {
-      transform: scale(1.05);
-    }
-    .portfolio-card img {
-      transition: transform 0.4s ease-out;
+    .content-card:hover .card-icon-container svg { /* Icon animation on card hover */
+        transform: scale(1.15) rotate(5deg);
     }
 
-    /* Button Styles */
+
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      padding: 1rem 2.75rem;
-      border-radius: 9999px;
-      transition: all 0.3s ease;
+      font-family: 'Inter', sans-serif;
+      padding: 1rem 2.25rem; /* Slightly larger buttons */
+      border-radius: 14px; /* More rounded */
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       position: relative;
       overflow: hidden;
+      letter-spacing: 0.5px;
     }
-    .btn::after {
+    .btn-primary {
+      background: var(--su-gradient-primary);
+      color: white;
+      box-shadow: 0 5px 15px -3px rgba(29, 78, 216, 0.3), 0 4px 6px -4px rgba(29, 78, 216, 0.2);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 20px -3px rgba(29, 78, 216, 0.35), 0 8px 10px -6px rgba(29, 78, 216, 0.25);
+    }
+    .btn-secondary {
+      background-color: white;
+      color: var(--su-primary);
+      border: 2px solid var(--su-border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--su-primary);
+      transform: translateY(-2px);
+    }
+    /* New button style for the new contact section CTA */
+    .btn-cta-green {
+      background: var(--su-accent-new); /* Teal */
+      color: white;
+      box-shadow: 0 5px 15px -3px rgba(20, 184, 166, 0.4), 0 4px 6px -4px rgba(20, 184, 166, 0.3);
+    }
+    .btn-cta-green:hover {
+      background: #0F766E; /* Darker Teal */
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 20px -3px rgba(20, 184, 166, 0.45), 0 8px 10px -6px rgba(20, 184, 166, 0.35);
+    }
+.flash-card-fancy {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  transition:
+    box-shadow 0.18s cubic-bezier(0.4,0,0.2,1),
+    transform 0.18s cubic-bezier(0.4,0,0.2,1);
+  will-change: transform, box-shadow;
+}
+.flash-card-fancy:hover {
+  transform: scale(1.045);
+  box-shadow:
+    0 10px 40px 0 rgba(99, 102, 241, 0.32),   /* thick indigo shadow */
+    0 2px 16px 0 rgba(20, 184, 166, 0.15);    /* subtle teal accent */
+  border-color: var(--su-accent-new);
+}
+
+    .section {
+      padding-top: 7rem; /* Increased section padding */
+      padding-bottom: 7rem;
+    }
+
+    #hero {
+      background: var(--su-gradient-hero);
+      background-size: 300% 300%; /* For gradient animation */
+      animation: gradientFlow 15s ease infinite; /* Gradient animation */
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    #hero::before { /* Subtle overlay pattern */
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 80%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.08) 0%, transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 30%);
+      z-index: 0;
+      opacity: 0.7;
     }
-    .btn:hover::after {
-      opacity: 1;
+
+    #achievements, footer { /* Shared dark background style for achievements and footer */
+      background: var(--su-bg-dark);
+      position: relative;
     }
-    .btn:focus {
-      outline: 2px solid var(--su-primary);
-      outline-offset: 2px;
+    /* Specific styling for contact section dark background, if different from achievements/footer */
+    /* #contact.bg-dark-custom { -- This class is removed from contact section for light theme
+        background-color: var(--su-bg-dark); 
+    } */
+
+    #achievements::before, footer::before { /* Subtle noise/texture pattern for dark sections */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      z-index: 0;
     }
-    .btn-primary {
-      background: var(--su-gradient-primary);
-      color: white;
-    }
-    .btn-primary:hover {
-      box-shadow: 0 8px 24px rgba(29, 78, 216, 0.3);
-      filter: brightness(1.15);
-      transform: translateY(-3px);
-    }
-    .btn-secondary {
-      background-color: var(--su-card-bg);
-      color: var(--su-primary);
-      border: 2px solid var(--su-primary);
-    }
-    .btn-secondary:hover {
-      background-color: var(--su-primary);
-      color: white;
-      box-shadow: 0 8px 24px rgba(29, 78, 216, 0.2);
-      transform: translateY(-3px);
-    }
-    .btn-cta-green {
+    /* The ::before rule that targeted #contact.bg-dark-custom::before is no longer needed as bg-dark-custom is removed from #contact */
+
+    footer::after { /* Footer top border gradient */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px; /* Thicker border */
       background: var(--su-gradient-secondary);
-      color: white;
-    }
-    .btn-cta-green:hover {
-      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
-      filter: brightness(1.15);
-      transform: translateY(-3px);
     }
 
-    /* Animations */
-    @keyframes slideInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes scaleUp {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes fadeInSection {
-      from { background-color: transparent; opacity: 0.8; }
-      to { background-color: inherit; opacity: 1; }
-    }
-
-    .animate-slideInUp { animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-    .animate-fadeIn { animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-    .animate-scaleUp { animation: scaleUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-
-    .stagger-children > * {
+    /* Base state for elements that will animate (Intersection Observer) */
+    .animate-on-scroll {
       opacity: 0;
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .animate-fadeIn.animate-on-scroll { transform: translateY(20px); }
+    .animate-slideInUp.animate-on-scroll { transform: translateY(40px); }
+    .animate-slideInLeft.animate-on-scroll { transform: translateX(-40px); }
+    .animate-slideInRight.animate-on-scroll { transform: translateX(40px); }
+    .animate-scaleUp.animate-on-scroll { transform: scale(0.9); }
+
+    /* When .is-visible is added by JS, apply the animation */
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0) translateX(0) scale(1);
     }
 
-    /* Mobile Menu Specific Styles */
+    @keyframes gradientFlow { /* Hero gradient animation */
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Mobile menu */
     @media (max-width: 1023px) {
       .mobile-menu-container {
         display: none;
         position: fixed;
-        top: 80px; /* Should match header height */
+        top: 70px; /* Adjusted for potentially smaller header */
         left: 0;
         right: 0;
         background-color: var(--su-card-bg);
-        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        z-index: 40; /* Ensure it's below header (z-50) but above content */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        z-index: 40;
         padding: 1rem 0;
-        border-bottom-left-radius: 0.75rem;
-        border-bottom-right-radius: 0.75rem;
-        max-height: calc(100vh - 80px); /* Adjust based on header height */
+        border-bottom-left-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        max-height: calc(100vh - 70px);
         overflow-y: auto;
       }
       .mobile-menu-container.open {
@@ -280,376 +252,318 @@
         flex-direction: column;
         gap: 0.25rem;
       }
-      #mobileMenu .nav-item {
-        padding: 0.875rem 1.5rem;
-        display: block;
-        width: 100%;
-      }
     }
 
-    /* Section Specific Enhancements */
-    #hero {
-      background: var(--su-gradient-hero);
-      position: relative;
-      overflow: hidden; /* Good for containing ::before elements */
+    /* Header scroll effect */
+    header.scrolled {
+        background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        backdrop-filter: blur(8px);
+        height: 70px; /* Slightly smaller header on scroll */
     }
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at top left, rgba(255,255,255,0.2), transparent 70%);
-      z-index: 0; /* Behind hero content */
-    }
-    #hero .container {
-      position: relative; /* Ensure content is above ::before */
-      z-index: 1;
-    }
-    #hero h1 {
-      text-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    }
-
-    /* Achievements Section */
-    #achievements {
-      background: var(--su-gradient-primary); /* This is a gradient; if solid color, use var(--su-primary) or var(--su-primary-darker) */
-    }
-    #achievements .content-card {
-      background: var(--su-bg-dark); /* Card background */
-      opacity: 0.95; /* Slight transparency */
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--su-text-light);
-    }
-    #achievements .content-card h3 {
-      color: white; /* Or var(--su-text-light) for consistency */
-    }
-    #achievements .text-content { /* Ensure this class is used or styles are applied directly */
-      color: var(--su-text-light);
-      opacity: 1; /* Ensure text is fully opaque */
-    }
-    #achievements strong {
-      color: var(--su-secondary); /* Accent color for strong text */
-      font-weight: 700;
-    }
-
-    /* Footer */
-    footer {
-      color: var(--su-footer-text);
-      position: relative;
-    }
-    footer::before { /* Top border accent */
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: var(--su-gradient-primary);
-    }
-    footer p {
-      color: var(--su-footer-text); /* Ensure consistent text color */
-    }
-    footer p span.heart {
-      color: #f43f5e; /* Explicit heart color */
-    }
-    footer .opacity-80 { /* Utility for slightly transparent text */
-      opacity: 0.9; /* Adjusted from 0.8 to 0.9, or use specific var if available */
-    }
-
-    /* Preloader */
-    #preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--su-bg-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000; /* Highest z-index */
-      transition: opacity 0.5s ease;
-    }
-    #preloader.hidden {
-      opacity: 0;
-      pointer-events: none; /* Important for usability after hiding */
-    }
-    .loader {
-      width: 50px;
-      height: 50px;
-      border: 5px solid var(--su-primary);
-      border-top: 5px solid var(--su-accent); /* Spinner accent */
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Back to Top Button */
-    #backToTop {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--su-gradient-primary);
-      color: white;
-      width: 3rem;
-      height: 3rem;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-      z-index: 50; /* Above most content, below header/modals */
-    }
-    #backToTop.visible {
-      opacity: 1;
-      visibility: visible;
-    }
-    #backToTop:hover {
-      transform: translateY(-4px); /* Slight lift on hover */
-    }
-    #backToTop:focus { /* Accessibility */
-      outline: 2px solid white;
-      outline-offset: 2px;
+    header {
+        height: 80px; /* Initial header height */
     }
   </style>
 </head>
 <body class="bg-[var(--su-bg-light)] text-[var(--su-text-dark)]">
-  <div id="preloader">
-    <div class="loader"></div>
+  <div id="preloader" class="fixed inset-0 bg-[var(--su-bg-dark)] flex items-center justify-center z-[100] transition-opacity duration-500">
+    <div class="w-16 h-16 border-4 border-[var(--su-primary)] border-t-[var(--su-accent-new)] rounded-full animate-spin"></div>
   </div>
-  <button id="backToTop" aria-label="Back to top">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+
+<button id="backToTop" class="fixed bottom-8 right-8 bg-[var(--su-primary)] hover:bg-[var(--su-primary-dark)] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 opacity-0 invisible hover:scale-110 z-50">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
     </svg>
-  </button>
+</button>
 
-  <header class="bg-[var(--su-card-bg)] shadow-xl fixed left-0 right-0 top-0 z-50 h-[80px] flex items-center transition-all duration-300">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <a class="text-3xl font-bold bg-[var(--su-gradient-primary)] bg-clip-text text-transparent" href="#hero">Sujay.AI</a>
-      <nav class="hidden lg:flex items-center space-x-6"> 
-        <a href="#hero" class="nav-item text-[var(--su-text-dark)] pb-2 font-medium">Home</a>
-        <a href="#about" class="nav-item text-[var(--su-text-dark)] pb-2 font-medium">About</a>
-        <a href="#services" class="nav-item text-[var(--su-text-dark)] pb-2 font-medium">Services</a>
-        <a href="#portfolio" class="nav-item text-[var(--su-text-dark)] pb-2 font-medium">Portfolio</a>
-        <a href="#achievements" class="nav-item text-[var(--su-text-dark)] pb-2 font-medium">Achievements</a>
-        <a href="#why-sujay" class="nav-item text-[var(--su-text-dark)] pb-2 font-medium">Why Sujay</a>
-        <a href="#contact" class="nav-item text-[var(--su-text-dark)] pb-2 font-medium">Contact</a>
+  <header class="fixed inset-x-0 top-0 z-50 flex items-center transition-all duration-300 ease-in-out">
+    <div class="container mx-auto px-6 flex items-center justify-between">
+        <a href="#hero" class="text-3xl font-bold font-display text-[var(--su-primary)] hover:text-[var(--su-primary-dark)] transition-colors duration-300">Holistic.ai</a><nav class="hidden lg:flex items-center space-x-10">
+        <a href="#hero" class="nav-item text-[var(--su-text-dark)] font-medium">Home</a>
+        <a href="#services" class="nav-item text-[var(--su-text-dark)] font-medium">Services</a>
+        <a href="#portfolio" class="nav-item text-[var(--su-text-dark)] font-medium">Work</a>
+        <a href="#about" class="nav-item text-[var(--su-text-dark)] font-medium">About</a>
+        <a href="#contact" class="nav-item text-[var(--su-text-dark)] font-medium">Contact</a>
       </nav>
-      <button class="lg:hidden mobile-nav-toggle text-3xl text-[var(--su-text-muted)]" aria-label="Open main menu" aria-expanded="false">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 transition-transform duration-300">
+      <button class="lg:hidden mobile-nav-toggle text-2xl text-[var(--su-text-muted)]" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
       </button>
     </div>
     <nav id="mobileMenu" class="mobile-menu-container lg:hidden">
-      <a href="#hero" class="nav-item font-medium">Home</a>
-      <a href="#about" class="nav-item font-medium">About</a>
-      <a href="#services" class="nav-item font-medium">Services</a>
-      <a href="#portfolio" class="nav-item font-medium">Portfolio</a>
-      <a href="#achievements" class="nav-item font-medium">Achievements</a>
-      <a href="#why-sujay" class="nav-item font-medium">Why Sujay</a>
-      <a href="#contact" class="nav-item font-medium">Contact</a>
+      <a href="#hero" class="nav-item px-6 py-3 font-medium text-lg">Home</a>
+      <a href="#about" class="nav-item px-6 py-3 font-medium text-lg">About</a>
+      <a href="#services" class="nav-item px-6 py-3 font-medium text-lg">Services</a>
+      <a href="#portfolio" class="nav-item px-6 py-3 font-medium text-lg">Work</a>
+      <a href="#contact" class="nav-item px-6 py-3 font-medium text-lg">Contact</a>
     </nav>
   </header>
 
-  <main class="pt-[80px]">
-    <section id="hero" class="section min-h-[calc(100vh-80px)] md:min-h-[550px] flex flex-col items-center justify-center text-center py-20 px-4 overflow-hidden">
-      <div class="container mx-auto animate-fadeIn">
-        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-8 leading-tight animate-slideInUp" style="animation-delay: 0.2s;">
-          Crafting Digital Excellence.
-        </h1>
-        <p class="text-white/90 text-lg sm:text-xl lg:text-2xl max-w-3xl mx-auto mb-12 leading-relaxed animate-slideInUp" style="animation-delay: 0.4s;">
-          Expert WordPress development & strategic SEO to elevate your brand and drive measurable results.
-        </p>
-        <div class="animate-slideInUp" style="animation-delay: 0.6s;">
-          <a class="btn btn-primary text-lg" href="#contact">Let's Build Together</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="section bg-[var(--su-bg-light)]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl lg:text-6xl font-bold text-center mb-16 text-[var(--su-text-dark)] animate-slideInUp">
-          Meet Sujay: Your Digital Partner
-        </h2>
-        <div class="grid md:grid-cols-2 gap-12 lg:gap-16 max-w-5xl mx-auto items-center">
-          <div class="animate-slideInUp" style="animation-delay: 0.2s;">
-            <img src="https://placehold.co/600x600/3b82f6/ffffff?text=Sujay&font=poppins" alt="Sujay - WordPress Developer and SEO Expert" class="rounded-2xl shadow-xl w-full h-auto object-cover aspect-square">
-          </div>
-          <div class="text-[var(--su-text-muted)] space-y-6 animate-slideInUp" style="animation-delay: 0.4s;">
-            <p class="text-lg leading-relaxed">With <strong class="text-[var(--su-primary)] font-semibold">over five years of dedicated web development experience</strong>, I specialize in creating WordPress websites that are not just visually stunning, but also strategically engineered for peak performance and SEO success.</p>
-            <p class="text-lg leading-relaxed">My core expertise lies in <strong class="text-[var(--su-primary)] font-semibold">custom theme development, intricate plugin customization, and seamless website migrations</strong>. I'm passionate about building secure, scalable, and lightning-fast digital solutions that empower businesses.</p>
-            <p class="text-lg leading-relaxed">Beyond code, I excel in <strong class="text-[var(--su-primary)] font-semibold">data-driven SEO strategies and compelling content creation</strong>, ensuring your website doesn't just exist, but actively attracts and engages your target audience, ultimately driving conversions.</p>
+  <main class="pt-20"> <section id="hero" class="section min-h-[95vh] flex items-center relative">
+      <div class="container mx-auto px-6 relative z-10 text-center">
+        <div class="max-w-4xl mx-auto">
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-display font-extrabold text-white mb-8 leading-tight animate-on-scroll animate-slideInUp is-visible" data-delay="0.1s">
+            Innovate. Customise. Elevate.
+          </h1>
+          <p class="text-xl sm:text-2xl text-white/90 mb-10 leading-relaxed animate-on-scroll animate-slideInUp is-visible" data-delay="0.3s">
+            Next-gen WordPress development & cutting-edge SEO strategies to skyrocket your digital footprint and achieve unparalleled growth.
+          </p>
+          <div class="flex flex-wrap gap-5 justify-center animate-on-scroll animate-slideInUp is-visible" data-delay="0.5s">
+            <a href="#contact" class="btn btn-primary text-lg">Launch Your Project</a>
+            <a href="#portfolio" class="btn btn-secondary text-lg">See Our Work</a>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="services" class="section bg-slate-100"> 
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl lg:text-6xl font-bold text-center mb-16 text-[var(--su-text-dark)] animate-slideInUp">Core Services</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto stagger-children">
-          <div class="content-card flex flex-col items-center text-center animate-scaleUp">
-            <div class="service-icon-container">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>
+    <section id="services" class="section bg-[var(--su-bg-light)]">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl mx-auto text-center mb-20">
+          <span class="text-[var(--su-accent-new)] font-semibold text-sm tracking-wider mb-4 inline-block animate-on-scroll animate-fadeIn" data-delay="0s">MY SERVICES</span>
+          <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--su-text-dark)] mb-6 animate-on-scroll animate-slideInUp" data-delay="0.1s">
+            Solutions Crafted for Your Success
+          </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.5s">
+            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-[var(--su-accent)] to-[var(--su-primary-light)] flex items-center justify-center mb-8 shadow-lg card-icon-container transition-transform duration-300">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+              <rect x="3" y="5" width="18" height="14" rx="3" />
+              <path d="M3 9h18" />
+            </svg>
             </div>
-            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">Custom WordPress Development</h3>
-            <p class="text-[var(--su-text-muted)] text-base leading-relaxed">Tailored themes, plugin expertise, and full-site builds designed for performance, scalability, and your unique brand identity.</p>
+            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">Portfolio, Landing sites</h3>
+            <p class="text-[var(--su-text-muted)] text-lg leading-relaxed">
+              Stand out with a stunning portfolio, high-converting landing page, or dynamic blog. </p>
+          </div>          
+          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.2s">
+            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-[var(--su-primary)] to-[var(--su-accent)] flex items-center justify-center mb-8 shadow-lg card-icon-container transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">WordPress Mastery</h3>
+            <p class="text-[var(--su-text-muted)] text-lg leading-relaxed">
+              Custom themes, ecosystems, headless WordPress, and <br>e-commerce powerhouses, engineered for peak performance and scalability.
+            </p>
           </div>
-          <div class="content-card flex flex-col items-center text-center animate-scaleUp" style="animation-delay: 0.2s;">
-            <div class="service-icon-container">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
+          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.35s">
+            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-[var(--su-secondary)] to-[var(--su-accent-new)] flex items-center justify-center mb-8 shadow-lg card-icon-container transition-transform duration-300">
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
             </div>
-            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">Strategic SEO & Content</h3>
-            <p class="text-[var(--su-text-muted)] text-base leading-relaxed">In-depth keyword research, on-page/off-page optimization, and compelling content strategies to boost rankings and drive organic traffic.</p>
-          </div>
-          <div class="content-card flex flex-col items-center text-center animate-scaleUp" style="animation-delay: 0.4s;">
-            <div class="service-icon-container">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
-            </div>
-            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">Performance & Security</h3>
-            <p class="text-[var(--su-text-muted)] text-base leading-relaxed">Site speed optimization, robust security measures, SSL implementation, and reliable maintenance for a fast, secure online presence.</p>
+            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">Strategic SEO</h3>
+            <p class="text-[var(--su-text-muted)] text-lg leading-relaxed">
+              In-depth SEO audits, keyword intelligence, on-page/off-page optimization, and content strategies that dominate search rankings.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="portfolio" class="section bg-[var(--su-bg-light)]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl lg:text-6xl font-bold text-center mb-16 text-[var(--su-text-dark)] animate-slideInUp">Featured Work</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto stagger-children">
-          <a href="https://airdropbounty.events" target="_blank" rel="noopener noreferrer" class="portfolio-card content-card group animate-scaleUp no-underline p-0 overflow-hidden">
-            <div class="h-52 overflow-hidden"><img src="https://placehold.co/600x400/7dd3fc/111827?text=AirdropBounty" alt="AirdropBounty.events project screenshot" class="w-full h-full object-cover"></div>
-            <div class="p-6">
-              <h3 class="font-semibold text-xl text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">AirdropBounty.events</h3>
-              <p class="text-[var(--su-text-muted)] text-base mb-4">Crypto airdrop and bounty platform.</p>
-              <span class="text-sm font-medium text-[var(--su-primary)] group-hover:underline">View Project →</span>
-            </div>
-          </a>
-          <a href="https://pixelproduction.com" target="_blank" rel="noopener noreferrer" class="portfolio-card content-card group animate-scaleUp no-underline p-0 overflow-hidden" style="animation-delay: 0.15s;">
-            <div class="h-52 overflow-hidden"><img src="https://placehold.co/600x400/8b5cf6/ffffff?text=PixelProduction" alt="PixelProduction.com project screenshot" class="w-full h-full object-cover"></div>
-            <div class="p-6">
-              <h3 class="font-semibold text-xl text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">PixelProduction.com</h3>
-              <p class="text-[var(--su-text-muted)] text-base mb-4">Creative media production services.</p>
-              <span class="text-sm font-medium text-[var(--su-primary)] group-hover:underline">View Project →</span>
-            </div>
-          </a>
-          <a href="https://seoplusmedia.com" target="_blank" rel="noopener noreferrer" class="portfolio-card content-card group animate-scaleUp no-underline p-0 overflow-hidden" style="animation-delay: 0.3s;">
-            <div class="h-52 overflow-hidden"><img src="https://placehold.co/600x400/10b981/ffffff?text=SEOPlusMedia" alt="SEOPlusMedia.com project screenshot" class="w-full h-full object-cover"></div>
-            <div class="p-6">
-              <h3 class="font-semibold text-xl text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">SEOPlusMedia.com</h3>
-              <p class="text-[var(--su-text-muted)] text-base mb-4">Digital marketing and SEO agency.</p>
-              <span class="text-sm font-medium text-[var(--su-primary)] group-hover:underline">View Project →</span>
-            </div>
-          </a>
-          <a href="https://zestofmusic.github.io" target="_blank" rel="noopener noreferrer" class="portfolio-card content-card group animate-scaleUp no-underline p-0 overflow-hidden" style="animation-delay: 0.45s;">
-            <div class="h-52 overflow-hidden"><img src="https://placehold.co/600x400/f59e0b/111827?text=ZestOfMusic" alt="ZestOfMusic project screenshot" class="w-full h-full object-cover"></div>
-            <div class="p-6">
-              <h3 class="font-semibold text-xl text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">ZestOfMusic</h3>
-              <p class="text-[var(--su-text-muted)] text-base mb-4">Personal music project showcase.</p>
-              <span class="text-sm font-medium text-[var(--su-primary)] group-hover:underline">View Project →</span>
-            </div>
-          </a>
+<section id="portfolio" class="section bg-white">
+  <div class="container mx-auto px-6">
+    <div class="max-w-3xl mx-auto text-center mb-20">
+      <span class="text-[var(--su-accent-new)] font-semibold text-sm tracking-wider mb-4 inline-block animate-on-scroll animate-fadeIn" data-delay="0s">MY WORK</span>
+      <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--su-text-dark)] mb-6 animate-on-scroll animate-slideInUp" data-delay="0.1s">
+        Transforming Visions into Reality
+      </h2>
+      <p class="text-lg text-[var(--su-text-muted)] animate-on-scroll animate-slideInUp" data-delay="0.2s">
+        A glimpse into projects where I have partnered with clients to achieve remarkable digital outcomes.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10">
+      <!-- Project 1 -->
+      <a href="https://airdropbounty.events" target="_blank" rel="noopener noreferrer" class="content-card group no-underline animate-on-scroll animate-scaleUp" data-delay="0.3s">
+        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6 shadow-md">
+          <img 
+            src="https://airdropbounty.events/wp-content/uploads/2022/07/Airdrop_bounty_logo-removebg-preview.png" 
+            alt="AirdropBounty.events Project" 
+            class="w-full h-full max-h-40 object-contain bg-white p-4 transition-transform duration-300 group-hover:scale-105 rounded-xl"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x338/E0E0E0/757575?text=Image+Not+Found&font=poppins';">
+        </div>
+        <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">AirdropBounty.events</h3>
+        <p class="text-[var(--su-text-muted)] text-lg">Crypto Airdrop & Bounty Platform</p>
+      </a>
+      <!-- Project 2 -->
+      <a href="https://pixelproduction.com" target="_blank" rel="noopener noreferrer" class="content-card group no-underline animate-on-scroll animate-scaleUp" data-delay="0.45s">
+        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6 shadow-md">
+          <img 
+            src="https://pixelproduction.com/wp-content/uploads/2021/04/pixelproducion-logo.jpeg" 
+            alt="PixelProduction.com Project" 
+            class="w-full h-full max-h-40 object-contain bg-white p-4 transition-transform duration-300 group-hover:scale-105 rounded-xl"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x338/E0E0E0/757575?text=PixelProduction.com&font=poppins';">
+        </div>
+        <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">PixelProduction.com</h3>
+        <p class="text-[var(--su-text-muted)] text-lg">Creative Agency Portfolio Showcase</p>
+      </a>
+      <!-- Project 3 -->
+      <a href="https://seoplusmedia.com" target="_blank" rel="noopener noreferrer" class="content-card group no-underline animate-on-scroll animate-scaleUp" data-delay="0.6s">
+        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6 shadow-md">
+          <img 
+            src="https://seoplusmedia.com/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-26-at-20.06.07-300x161.jpeg" 
+            alt="SEOPlusMedia.com Project" 
+            class="w-full h-full max-h-40 object-contain bg-white p-4 transition-transform duration-300 group-hover:scale-105 rounded-xl"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x338/E0E0E0/757575?text=SEOPlusMedia.com&font=poppins';">
+        </div>
+        <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">SEOPlusMedia.com</h3>
+        <p class="text-[var(--su-text-muted)] text-lg">Digital Marketing Agency Site</p>
+      </a>
+      <!-- Project 4 -->
+      <a href="https://zestofmusic.github.io" target="_blank" rel="noopener noreferrer" class="content-card group no-underline animate-on-scroll animate-scaleUp" data-delay="0.75s">
+        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6 shadow-md">
+          <img 
+            src="https://placehold.co/600x338/14B8A6/FFFFFF?text=ZestOfMusic&font=Poppins" 
+            alt="ZestOfMusic Project" 
+            class="w-full h-full max-h-40 object-contain bg-white p-4 transition-transform duration-300 group-hover:scale-105 rounded-xl"
+            onerror="this.onerror=null;this.src='https://placehold.co/600x338/E0E0E0/757575?text=ZestOfMusic&font=poppins';">
+        </div>
+        <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">ZestOfMusic</h3>
+        <p class="text-[var(--su-text-muted)] text-lg">Portfolio website - showcasing creative & production expertise</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+    <section id="achievements" class="section text-white"> <div class="container mx-auto px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center mb-20">
+          <span class="text-[var(--su-accent-new)] font-semibold text-sm tracking-wider mb-4 inline-block animate-on-scroll animate-fadeIn" data-delay="0s">PROVEN RESULTS</span>
+          <h2 class="text-4xl lg:text-5xl font-display font-bold text-white mb-6 animate-on-scroll animate-slideInUp" data-delay="0.1s">
+            Impact That Speaks Volumes
+          </h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.2s">
+            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="40">0</div>
+            <p class="text-white/80 text-lg">Avg. Organic Traffic Increase</p>
+          </div>
+          <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.35s">
+            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="50" data-suffix="+">0</div>
+            <p class="text-white/80 text-lg">Conversion Rate Uplift</p>
+          </div>
+          <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.5s">
+            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="100" data-suffix="%">0</div>
+            <p class="text-white/80 text-lg">Client Satisfaction</p>
+          </div>
+          <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.01s">
+            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="200" data-suffix="+">0</div>
+            <p class="text-white/80 text-lg">Lead Generation</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="achievements" class="section bg-[var(--su-gradient-primary)] text-white">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl lg:text-6xl font-bold text-center mb-16 animate-slideInUp">Proven Results & Recognition</h2>
-        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto stagger-children">
-          <div class="content-card animate-scaleUp">
-            <h3 class="text-2xl font-semibold mb-3 text-white">Stellar Client Feedback</h3>
-            <p class="text-content text-base leading-relaxed">Consistently praised for timely delivery, transparent communication, and impactful digital solutions that exceed expectations.</p>
+    <section id="about" class="section bg-white">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center mb-20">
+          <span class="text-[var(--su-accent-new)] font-semibold text-sm tracking-wider mb-4 inline-block animate-on-scroll animate-fadeIn" data-delay="0s">ABOUT ME</span>
+          <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--su-text-dark)] mb-6 animate-on-scroll animate-slideInUp" data-delay="0.1s">
+            Pioneering Digital Excellence Since 2020
+          </h2>
+          <p class="text-lg text-[var(--su-text-muted)] max-w-3xl mx-auto animate-on-scroll animate-slideInUp" data-delay="0.2s">
+            I am a passionate developer specializing in bespoke WordPress solutions and data-driven SEO strategies that deliver tangible business impact and lasting online success.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+          <div class="animate-on-scroll animate-slideInLeft" data-delay="0.3s">
+            <div class="rounded-3xl overflow-hidden shadow-2xl aspect-w-1 aspect-h-1">
+              <img src="img/Holistic_ai.jpg" alt="Sujay.AI Team - Digital Experts" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x600/E0E0E0/757575?text=Image+Not+Found&font=poppins';">
+            </div>
           </div>
-          <div class="content-card animate-scaleUp" style="animation-delay: 0.2s;">
-            <h3 class="text-2xl font-semibold mb-3 text-white">Organic Growth Champion</h3>
-            <p class="text-content text-base leading-relaxed">Achieved <strong>25–40% organic session growth</strong> within three months for multiple client website migrations and SEO overhauls.</p>
-          </div>
-          <div class="content-card animate-scaleUp" style="animation-delay: 0.4s;">
-            <h3 class="text-2xl font-semibold mb-3 text-white">Rapid Ranking Improvements</h3>
-            <p class="text-content text-base leading-relaxed">Elevated a lifestyle blog to page 1 SERP for highly competitive keywords in just six weeks through strategic content and SEO.</p>
-          </div>
-          <div class="content-card animate-scaleUp" style="animation-delay: 0.6s;">
-            <h3 class="text-2xl font-semibold mb-3 text-white">Conversion Rate Optimization</h3>
-            <p class="text-content text-base leading-relaxed">Boosted mailing-list sign-ups by over 50% and inquiry form submissions by 30% via optimized landing pages and UX enhancements.</p>
+          <div class="animate-on-scroll animate-slideInRight" data-delay="0.4s">
+            <div class="space-y-8">
+              <div>
+                <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">Philosophy</h3>
+                <p class="text-[var(--su-text-muted)] text-lg leading-relaxed">
+                    I work independently, blending technical mastery with creative insight to build websites that are not only visually stunning but also perform flawlessly in search rankings, engage users, and convert visitors into loyal customers.
+                </p>
+              </div>
+              <div>
+                <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">Key Strengths</h3>
+                <ul class="space-y-4 text-[var(--su-text-muted)] text-lg">
+                  <li class="flex items-start">
+                    <svg class="w-6 h-6 text-[var(--su-accent-new)] mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    <span>Bespoke WordPress Theme & Plugin Architecture</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-6 h-6 text-[var(--su-accent-new)] mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    <span>Advanced Technical SEO & Content Strategy</span>
+                  </li>
+                  <li class="flex items-start">
+                    <svg class="w-6 h-6 text-[var(--su-accent-new)] mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    <span>Elite Performance Optimization & Security Fortification</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="pt-6">
+                <a href="#services" class="inline-flex items-center text-[var(--su-primary)] font-semibold text-lg hover:underline group">
+                  Discover Services
+                  <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="why-sujay" class="section bg-[var(--su-bg-light)]">
-      <div class="container mx-auto px-4">
-        <h2 class="text-4xl lg:text-6xl font-bold text-center mb-16 text-[var(--su-text-dark)] animate-slideInUp">The Sujay.AI Advantage</h2>
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center stagger-children">
-          <div class="content-card animate-scaleUp">
-            <div class="service-icon-container mx-auto bg-[var(--su-gradient-secondary)]"> 
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" /></svg>
-            </div>
-            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-3">Holistic Strategy</h3>
-            <p class="text-[var(--su-text-muted)] text-base leading-relaxed">Seamlessly integrating cutting-edge design, user-centric development, and data-driven SEO to build a powerful, cohesive online presence.</p>
-          </div>
-          <div class="content-card animate-scaleUp" style="animation-delay: 0.2s;">
-            <div class="service-icon-container mx-auto bg-[var(--su-gradient-secondary)]">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-6.75 3h9M3 12c0-4.556 3.86-8.25 8.625-8.25h.75c4.765 0 8.625 3.694 8.625 8.25s-3.86 8.25-8.625 8.25h-.75C6.86 20.25 3 16.556 3 12z" /></svg>
-            </div>
-            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-3">Transparent Communication</h3>
-            <p class="text-[var(--su-text-muted)] text-base leading-relaxed">Keeping you informed with regular updates, clear explanations, and collaborative feedback sessions every step of the way.</p>
-          </div>
-          <div class="content-card animate-scaleUp" style="animation-delay: 0.4s;">
-            <div class="service-icon-container mx-auto bg-[var(--su-gradient-secondary)]">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.092 1.21-.138 2.43-.138 3.662v2.288a2.25 2.25 0 002.25 2.25h8.25a2.25 2.25 0 002.25-2.25v-2.288zm-1.5 0a2.25 2.25 0 00-2.25-2.25H9a2.25 2.25 0 00-2.25 2.25m10.5 0V15M9 12V9M3.75 15H4.5m15 0h.75M3.75 12H4.5m15 0h.75M3.75 9H4.5m15 0h.75" /></svg>
-            </div>
-            <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-3">Long-Term Partnership</h3>
-            <p class="text-[var(--su-text-muted)] text-base leading-relaxed">Dedicated to your success beyond launch, offering ongoing support, performance monitoring, and strategic advice to ensure continuous growth.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section bg-[var(--su-bg-dark)] text-[var(--su-text-light)] py-24">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl lg:text-6xl font-bold mb-6 text-white animate-slideInUp">Ready to Elevate Your Digital Presence?</h2>
-        <p class="text-lg lg:text-xl mb-12 max-w-3xl mx-auto opacity-90 animate-slideInUp" style="animation-delay: 0.2s;">
+    <section id="contact" class="section bg-white text-[var(--su-text-dark)] py-24 relative">
+      <div class="container mx-auto px-4 text-center relative z-10">
+        <h2 class="text-4xl lg:text-6xl font-bold mb-6 text-[var(--su-text-dark)] animate-on-scroll animate-slideInUp" data-delay="0s">Ready to Elevate Your Digital Presence?</h2>
+        <p class="text-lg lg:text-xl text-[var(--su-text-muted)] mb-12 max-w-3xl mx-auto animate-on-scroll animate-slideInUp" data-delay="0.2s">
           Let's collaborate to build a website that not only looks incredible but drives tangible results for your business. Reach out today for a free consultation!
         </p>
-        <div class="flex flex-wrap justify-center items-center gap-6 mt-8 animate-slideInUp" style="animation-delay: 0.4s;">
-          <a class="btn btn-cta-green text-lg" href="https://www.fiverr.com/s/LdWgxgL" target="_blank" rel="noopener noreferrer">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 inline-block"><path d="M3.509 2.025A4.093 4.093 0 001.99 5.062C1.99 7.48 3.71 9.5 6.012 9.5h.517V6.555A1.5 1.5 0 018.028 5.06L8 5.059l.002-.004a1.5 1.5 0 012.996 0L11 5.059l.001.004c0 .828-.672 1.5-1.5 1.5H9.012v2.945h.517c2.302 0 4.022-2.02 4.022-4.438a4.093 4.093 0 00-1.518-3.037 1.5 1.5 0 112.103-2.05A7.093 7.093 0 0116.01 5.062c0 3.958-2.991 7.188-6.998 7.188h-.024c-4.007 0-6.998-3.229-6.998-7.188a7.093 7.093 0 012.62-5.127 1.5 1.5 0 112.103 2.05zM6.012 13.5H10V15H6.012a1.5 1.5 0 010-3H10v1.5H6.012z"></path></svg>
-            My Fiverr Gig
-          </a>
-          <a class="btn btn-cta-green text-lg" href="https://wa.me/+919702738939" target="_blank" rel="noopener noreferrer">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 mr-2 inline-block">
-              <path d="M11.63 7.695c-.23-.115-.835-.41-1.06-.485-.225-.075-.39-.11-.555.11s-.21.485-.285.555c-.075.075-.15.075-.285-.04s-.555-.21-.99-.585c-.39-.345-.645-.765-.72-.885-.075-.11-.005-.17.07-.28l.18-.21c.075-.075.11-.15.15-.225s.04-.15 0-.225c-.04-.075-.225-.555-.285-.72s-.13-.14-.21-.15h-.21c-.075 0-.225.04-.345.21s-.45.45-.45 1.095c0 .65.45 1.275.525 1.35.075.075.9 1.395 2.175 1.92.29.12.495.195.66.255.21.075.39.06.525-.015.15-.09.225-.21.285-.41s.045-.375.03-.41-.045-.06-.09-.075z"/>
+        <div class="flex flex-col items-center gap-6 mt-8 animate-on-scroll animate-slideInUp" data-delay="0.4s">
+          <a class="btn btn-cta-green text-lg py-3 px-8" href="https://wa.me/+919702738939" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 inline-block" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.521.149-.173.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.075c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
             </svg>
-            Chat on WhatsApp
+            WhatsApp Me!
           </a>
+          <div class="mt-6 text-center">
+              <p class="text-md text-[var(--su-text-muted)] mb-3">Or email:
+              <a href="mailto:sujay@aryal.in" class="text-[var(--su-accent-new)] hover:text-[#0F766E] transition-colors duration-300 text-lg font-medium block sm:inline-block sm:mx-2">sujay@aryal.in</a>
+              <span class="hidden sm:inline-block text-[var(--su-text-muted)] opacity-80 mx-1">/</span>
+              <a href="mailto:sujayaryal98@gmail.com" class="text-[var(--su-accent-new)] hover:text-[#0F766E] transition-colors duration-300 text-lg font-medium block mt-1 sm:mt-0 sm:inline-block sm:mx-2">sujayaryal98@gmail.com</a>
+          </div>
         </div>
-        <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-16 stagger-children">
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-8 animate-scaleUp" style="animation-delay: 0.6s;">
-            <h4 class="text-white font-semibold text-xl mb-2">Typical Turnaround</h4>
-            <p class="text-base opacity-80">Project timelines are tailored: 7–14 days for standard sites, with flexibility for complex builds and ongoing retainers.</p>
+        <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-16">
+          <div class="bg-[var(--su-bg-light)] border border-[var(--su-border)] rounded-2xl p-8 animate-on-scroll animate-scaleUp flash-card-fancy transition-all duration-500" data-delay="0.1s">
+            <h4 class="text-[var(--su-text-dark)] font-semibold text-xl mb-2">Custom Packages</h4>
+            <p class="text-base text-[var(--su-text-muted)] text-justify">
+              Get a landing page, blog, or business site—custom-built or converted from HTML to WordPress.
+            </p>
           </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-8 animate-scaleUp" style="animation-delay: 0.8s;">
-            <h4 class="text-white font-semibold text-xl mb-2">Custom Packages</h4>
-            <p class="text-base opacity-80">From focused SEO audits and performance boosts to comprehensive custom WordPress development and long-term support plans.</p>
+          <div class="bg-[var(--su-bg-light)] border border-[var(--su-border)] rounded-2xl p-8 animate-on-scroll animate-scaleUp flash-card-fancy transition-all duration-500" data-delay="0.1">
+            <h4 class="text-[var(--su-text-dark)] font-semibold text-xl mb-2">Your Vision, Built for You</h4>
+            <p class="text-base text-[var(--su-text-muted)] text-justify">
+              One-page sites, blogs, or custom WordPress builds—tailored to your needs, no templates.
+            </p>
           </div>
+        </div>
         </div>
       </div>
     </section>
-  </main>
+    </main>
 
-  <footer class="bg-[var(--su-footer-bg)] py-12 text-center">
-    <div class="container mx-auto px-4">
-      <p class="mb-3 text-sm">© <span id="currentYear">2025</span> Sujay.AI. All rights reserved.</p>
-      <p class="text-xs opacity-80">Designed & Developed with <span class="text-[#f43f5e] heart">♥</span> and Powered by Innovation.</p>
+  <footer class="py-16 text-center"> <div class="container mx-auto px-6 relative z-10">
+      <a href="#hero" class="text-3xl font-bold font-display bg-[var(--su-gradient-secondary)] bg-clip-text text-transparent inline-block mb-8">Holistic.ai</a>
+      <div class="flex justify-center space-x-6 mb-8">
+        <a href="#services" class="text-[var(--su-text-light)]/70 hover:text-white transition-colors">Services</a>
+        <a href="#portfolio" class="text-[var(--su-text-light)]/70 hover:text-white transition-colors">Work</a>
+        <a href="#about" class="text-[var(--su-text-light)]/70 hover:text-white transition-colors">About</a>
+        <a href="#contact" class="text-[var(--su-text-light)]/70 hover:text-white transition-colors">Contact</a>
+      </div>
+      <p class="text-md text-[var(--su-text-muted)] mb-3">© <span id="currentYear"></span> Holistic.ai All Rights Reserved.</p>
+      <p class="text-sm text-[var(--su-text-muted)] opacity-80">Innovating Digital Futures, One Pixel at a Time.</p>
     </div>
   </footer>
 
@@ -658,205 +572,247 @@
       // Preloader
       const preloader = document.getElementById('preloader');
       if (preloader) {
-        window.addEventListener('load', () => {
-          preloader.classList.add('hidden');
-          setTimeout(() => {
-            preloader.style.display = 'none';
-          }, 500); // Match CSS transition
+        window.addEventListener('load', () => { // Ensure all assets are loaded
+            setTimeout(() => {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500); // Match opacity transition duration
+            }, 300); // Minimal delay after load
         });
       }
 
-      // Set current year in footer
-      const currentYearElement = document.getElementById('currentYear');
-      if (currentYearElement) {
-        currentYearElement.textContent = new Date().getFullYear();
+      // Set current year
+      const currentYearEl = document.getElementById('currentYear');
+      if (currentYearEl) {
+        currentYearEl.textContent = new Date().getFullYear();
       }
       
-      // Mobile nav toggle
+
+      // Header scroll effect
+      const header = document.querySelector('header');
+      if (header) {
+        const headerHeight = header.offsetHeight;
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > headerHeight / 2) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+      }
+
+
+      // Mobile menu toggle
       const toggleButton = document.querySelector('.mobile-nav-toggle');
       const mobileMenu = document.getElementById('mobileMenu');
-
+      
       if (toggleButton && mobileMenu) {
-        toggleButton.addEventListener('click', function() {
+        toggleButton.addEventListener('click', () => {
           const isOpen = mobileMenu.classList.toggle('open');
           toggleButton.setAttribute('aria-expanded', isOpen.toString());
-          // Toggle icon
+          document.body.style.overflow = isOpen ? 'hidden' : ''; // Prevent body scroll when menu open
           toggleButton.innerHTML = isOpen
-            ? `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 transition-transform duration-300 transform rotate-180"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>` // X icon
-            : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 transition-transform duration-300"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`; // Hamburger icon
-          toggleButton.setAttribute('aria-label', isOpen ? 'Close main menu' : 'Open main menu');
+            ? `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>` // Close icon
+            : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`; // Menu icon
         });
 
         // Close mobile menu when a link is clicked
-        mobileMenu.querySelectorAll('a.nav-item').forEach(link => {
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
           link.addEventListener('click', () => {
             if (mobileMenu.classList.contains('open')) {
               mobileMenu.classList.remove('open');
               toggleButton.setAttribute('aria-expanded', 'false');
-              toggleButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 transition-transform duration-300"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`;
-              toggleButton.setAttribute('aria-label', 'Open main menu');
+              document.body.style.overflow = '';
+              toggleButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`; // Menu icon
             }
           });
         });
       }
 
-      // Scrollspy
-      const desktopNavLinks = document.querySelectorAll('header nav a.nav-item');
-      const mobileNavLinksList = document.querySelectorAll('#mobileMenu a.nav-item');
-      const allNavLinks = [...desktopNavLinks, ...mobileNavLinksList];
-      const sections = [];
 
-      allNavLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#') && href.length > 1) {
-          try {
-            const sectionElement = document.querySelector(href);
-            if (sectionElement && !sections.find(s => s.id === sectionElement.id)) {
-              sections.push({
-                id: sectionElement.id,
-                element: sectionElement,
-                // Get unique links for desktop and mobile if they exist
-                linkDesktop: document.querySelector(`header nav a.nav-item[href="#${sectionElement.id}"]`),
-                linkMobile: document.querySelector(`#mobileMenu a.nav-item[href="#${sectionElement.id}"]`)
-              });
-            }
-          } catch (e) {
-            console.warn(`Scrollspy: Could not find element with ID: ${href}`, e);
-          }
-        }
-      });
-      
-      function highlightNav() {
-        if (sections.length === 0) return;
-
-        const scrollY = window.pageYOffset;
-        const header = document.querySelector('header');
-        const headerHeight = header ? header.offsetHeight + 40 : 120; // Add some offset
-        let currentActiveSectionId = null;
-
-        for (const section of sections) {
-          if (!section.element) continue;
-          const sectionTop = section.element.offsetTop - headerHeight;
-          const sectionBottom = sectionTop + section.element.offsetHeight;
-          if (scrollY >= sectionTop && scrollY < sectionBottom) {
-            currentActiveSectionId = section.id;
-            break;
-          }
-        }
-        
-        // Handle case when scrolled to the very bottom of the page
-        const totalPageHeight = document.body.scrollHeight;
-        const viewportHeight = window.innerHeight;
-        if (scrollY + viewportHeight >= totalPageHeight - 50 && sections.length > 0) { // 50px tolerance
-          currentActiveSectionId = sections[sections.length - 1].id;
-        } else if (scrollY < (sections[0]?.element.offsetTop - headerHeight || 0) && sections.length > 0) {
-          // If above the first section, highlight the first section's link (e.g., "Home")
-           currentActiveSectionId = sections[0].id;
-        }
-
-        allNavLinks.forEach(link => {
-          if(link) { // Ensure link exists
-            const linkHrefId = link.getAttribute('href')?.substring(1);
-            link.classList.toggle('nav-link-active', linkHrefId === currentActiveSectionId);
-          }
-        });
-      }
-
-      if (sections.length > 0) {
-        highlightNav(); // Initial call
-        window.addEventListener('scroll', highlightNav, { passive: true });
-      }
-
-      // Back to Top Button
+      // Back to top button
       const backToTopButton = document.getElementById('backToTop');
       if (backToTopButton) {
         window.addEventListener('scroll', () => {
-          if (window.pageYOffset > 300) {
-            backToTopButton.classList.add('visible');
+          if (window.scrollY > 400) { 
+            backToTopButton.style.opacity = '1';
+            backToTopButton.classList.remove('invisible');
           } else {
-            backToTopButton.classList.remove('visible');
+            backToTopButton.style.opacity = '0';
+            backToTopButton.classList.add('invisible');
           }
-        }, { passive: true });
-
+        });
         backToTopButton.addEventListener('click', (e) => {
-          e.preventDefault(); // Good practice for buttons acting as links
+          e.preventDefault();
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
-      // Image fallback
-      document.querySelectorAll('img').forEach(img => {
-        img.addEventListener('error', function() {
-          // Try to get dimensions from src if they are like placehold.co/WIDTHxHEIGHT
-          const srcVal = this.getAttribute('src');
-          const match = srcVal ? srcVal.match(/placehold.co\/(\d+)x(\d+)/) : null;
-          const width = match && match[1] ? parseInt(match[1]) : (this.naturalWidth || this.width || 600);
-          const height = match && match[2] ? parseInt(match[2]) : (this.naturalHeight || this.height || 400);
-          
-          this.src = `https://placehold.co/${width}x${height}/e0e0e0/757575?text=Image+Not+Found&font=poppins`;
-          this.alt = this.alt || 'Image not found or failed to load'; // Keep original alt if present
+      // Smooth scroll for anchor links & active nav state
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          // Ensure it's a valid internal link and not just "#"
+          if (href && href.length > 1 && href.startsWith('#')) { 
+            const targetEl = document.querySelector(href);
+            if (targetEl) {
+              e.preventDefault(); // Prevent default only if target exists
+              const headerActualHeight = document.querySelector('header')?.offsetHeight || 0;
+              const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerActualHeight;
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+            }
+          }
         });
       });
-
-      // Staggered animations
-      const animatedSectionContainers = document.querySelectorAll('.stagger-children');
-      const observerOptions = {
-        root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.1 // 10% of item visible
-      };
-
-      const animationObserver = new IntersectionObserver((entries, observer) => {
+      
+      // Intersection Observer for animations on scroll
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const childrenToAnimate = entry.target.children;
-            for (let i = 0; i < childrenToAnimate.length; i++) {
-              const child = childrenToAnimate[i];
-              if (child instanceof HTMLElement) { // Ensure it's an HTMLElement
-                  child.style.animationDelay = `${i * 0.15}s`;
-                  child.style.opacity = '1'; // Make it visible to start animation
-              }
-            }
+            const delay = entry.target.dataset.delay || '0s';
+            entry.target.style.transitionDelay = delay;
+            entry.target.classList.add('is-visible');
             observer.unobserve(entry.target); // Animate only once
           }
         });
-      }, observerOptions);
+      }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
 
-      animatedSectionContainers.forEach(container => {
-        const children = container.children;
-        for (let i = 0; i < children.length; i++) {
-          if (children[i] instanceof HTMLElement) {
-            children[i].style.opacity = '0'; // Initially hide for animation
-          }
-        }
-        animationObserver.observe(container);
+      animatedElements.forEach(el => {
+        observer.observe(el);
       });
 
-      // Smooth scroll for all anchor links (already good, just ensuring it's robust)
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const hrefAttribute = this.getAttribute('href');
-          // Ensure it's a valid ID selector and not just "#"
-          if (hrefAttribute && hrefAttribute.length > 1 && hrefAttribute.startsWith('#')) {
-            try {
-              const targetElement = document.querySelector(hrefAttribute);
-              if (targetElement) {
-                e.preventDefault();
-                const headerOffset = document.querySelector('header')?.offsetHeight || 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-      
-                window.scrollTo({
-                  top: offsetPosition,
-                  behavior: 'smooth'
-                });
-              }
-            } catch (err) {
-              console.warn("Smooth scroll failed for selector: ", hrefAttribute, err);
+      // Number Counter Animation
+      function animateCounters() {
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200; // Lower number = faster animation
+
+        counters.forEach(counter => {
+          const target = +counter.dataset.target;
+          const suffix = counter.dataset.suffix || '';
+          let count = 0;
+          
+          const updateCount = () => {
+            const increment = target / speed;
+            count += increment;
+
+            if (count < target) {
+              counter.innerText = Math.ceil(count) + suffix;
+              requestAnimationFrame(updateCount);
+            } else {
+              counter.innerText = target + suffix; // Ensure exact target value
             }
-          }
+          };
+          updateCount();
+        });
+
+        const rangeCounters = document.querySelectorAll('.counter-range');
+        rangeCounters.forEach(counter => {
+            const min = +counter.dataset.min;
+            const max = +counter.dataset.max;
+            const suffix = counter.dataset.suffix || '';
+            let count = 0;
+            const targetDisplayStart = min; // Start animation towards the 'min' value
+            
+            const updateRangeCount = () => {
+                const increment = targetDisplayStart / speed; // Animate up to the 'min' value
+                count += increment;
+                if (count < targetDisplayStart) {
+                    counter.innerText = Math.ceil(count); // Show interim counting
+                    requestAnimationFrame(updateRangeCount);
+                } else {
+                    counter.innerText = `${min}-${max}${suffix}`; // Then display full range
+                }
+            };
+            updateRangeCount();
+        });
+      }
+
+      // Trigger counter animation when achievements section is visible
+      const achievementsSection = document.getElementById('achievements');
+      if (achievementsSection) {
+        const achievementObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateCounters();
+              obs.unobserve(entry.target); // Animate counters only once
+            }
+          });
+        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+        achievementObserver.observe(achievementsSection);
+      }
+
+      // Image fallback using onerror
+      document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+          // Attempt to parse dimensions and text from original placeholder
+          const src = this.getAttribute('src');
+          const match = src ? src.match(/placehold.co\/(\d+)x(\d+)\/([0-9a-fA-F]{6})?\/([0-9a-fA-F]{6})?\?text=([^&]+)/) : null;
+          const width = match && match[1] ? match[1] : (this.width > 1 ? this.width : '600');
+          const height = match && match[2] ? match[2] : (this.height > 1 ? this.height : '400');
+          const bgColor = match && match[3] ? match[3] : 'E0E0E0'; // Default fallback bg color
+          const textColor = match && match[4] ? match[4] : '757575'; // Default fallback text color
+          const text = match && match[5] ? decodeURIComponent(match[5].replace(/\+/g, ' ')) : (this.alt || 'Image Missing');
+          
+          this.src = `https://placehold.co/${width}x${height}/${bgColor}/${textColor}?text=${encodeURIComponent(text)}&font=poppins`;
+          this.alt = `Error loading: ${this.alt || text}`; // Update alt text
+          // Prevent infinite loop if fallback also fails, though unlikely for placehold.co
+          this.removeEventListener('error', arguments.callee); 
         });
       });
+
+      // Scrollspy for navigation active state
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('header nav a.nav-item');
+      const mobileNavLinks = document.querySelectorAll('#mobileMenu a.nav-item');
+      const allNavLinks = [...navLinks, ...mobileNavLinks];
+
+
+      function highlightNav() {
+        let currentSectionId = '';
+        const headerActualHeight = document.querySelector('header')?.offsetHeight || 70; // Fallback height
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - headerActualHeight - 50; // Offset for better accuracy
+          if (window.scrollY >= sectionTop) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+        
+        // Special case for bottom of page, highlight last section
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) { 
+            const lastSection = sections[sections.length - 1];
+            if (lastSection) currentSectionId = lastSection.getAttribute('id');
+        }
+
+        allNavLinks.forEach(link => {
+          link.classList.remove('nav-link-active');
+          const linkHref = link.getAttribute('href');
+          // Check if href is not null, has more than one char, and matches currentSectionId
+          if (linkHref && linkHref.length > 1 && linkHref.substring(1) === currentSectionId) {
+            link.classList.add('nav-link-active');
+          }
+        });
+
+        // If no section is active (e.g., at the very top before #hero or if no sections found)
+        // default to #hero or the first link if #hero isn't present.
+        if (!currentSectionId && sections.length > 0 && window.scrollY < (sections[0].offsetTop - headerActualHeight - 50)) {
+            allNavLinks.forEach(link => {
+                if (link.getAttribute('href') === '#hero') {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        } else if (!currentSectionId && allNavLinks.length > 0 && sections.length === 0) { // Fallback if no sections at all
+             allNavLinks[0]?.classList.add('nav-link-active'); // Activate the first link
+        }
+      }
+
+      window.addEventListener('scroll', highlightNav);
+      highlightNav(); // Initial call to set active link on page load
     });
   </script>
 </body>
