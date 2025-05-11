@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aryal.in| Digital Solutions</title>
+  <title>Aryal.in | Digital Solutions</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/png" href="img/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    /* Custom CSS Variables for consistent theming */
     :root {
       --su-primary: #2563eb; /* Vibrant blue */
       --su-primary-light: #3b82f6;
@@ -23,31 +25,35 @@
       --su-text-light: #f1f5f9;
       --su-text-dark: #1e293b;
       --su-text-muted: #64748b;
-      --su-border: #e2e8f0;
-      
+      --su-border: #e2e8ef; /* Slightly lighter border */
+
+      /* Gradients */
       --su-gradient-primary: linear-gradient(135deg, var(--su-primary) 0%, var(--su-accent) 100%);
       --su-gradient-secondary: linear-gradient(135deg, var(--su-secondary) 0%, var(--su-accent-new) 100%);
       --su-gradient-hero: linear-gradient(135deg, var(--su-primary-dark) 0%, var(--su-primary) 30%, var(--su-accent) 70%, var(--su-accent-new) 100%);
     }
 
+    /* Base Body Styling */
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--su-bg-light);
       color: var(--su-text-dark);
       min-width: 320px;
-      overflow-x: hidden; /* Already present, good for preventing horizontal scroll */
+      overflow-x: hidden; /* Prevents horizontal scroll */
       position: relative;
+      line-height: 1.6; /* Improved readability */
     }
 
+    /* Font styles for headings and display text */
     h1, h2, h3, h4, .font-display {
       font-family: 'Poppins', sans-serif;
     }
 
+    /* Navigation Item Styling with Hover and Active Underline */
     .nav-item {
       position: relative;
-      /* Prefer specifying individual properties for transition if "all" is not strictly needed */
-      transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-      padding-bottom: 6px;
+      transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding-bottom: 8px; /* Increased padding for underline */
     }
     .nav-item::after {
       content: '';
@@ -63,33 +69,37 @@
     }
     .nav-item:hover::after,
     .nav-item.nav-link-active::after {
-      width: 70%;
+      width: 80%; /* Slightly wider underline on hover/active */
     }
     .nav-item.nav-link-active {
       font-weight: 700;
-      color: var(--su-primary);
+      color: var(--su-primary); /* Highlight active link */
     }
 
+    /* Content Card Styling with Hover Effects */
     .content-card {
       background-color: var(--su-card-bg);
       border-radius: 20px;
       padding: 2.5rem;
       box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.03), 0 3px 7px -3px rgba(0, 0, 0, 0.03);
-      /* Optimized transition properties */
       transition-property: transform, box-shadow, border-color;
       transition-duration: 0.4s;
       transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
       border: 1px solid var(--su-border);
+      /* Ensure card content doesn't overflow during scale animation */
+      overflow: hidden;
     }
     .content-card:hover {
       transform: translateY(-10px) scale(1.03);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
       border-color: var(--su-primary-light);
     }
+    /* Icon animation inside card on hover */
     .content-card:hover .card-icon-container svg {
         transform: scale(1.15) rotate(5deg);
     }
 
+    /* Button Base Styling */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -98,15 +108,18 @@
       font-family: 'Inter', sans-serif;
       padding: 1rem 2.25rem;
       border-radius: 14px;
-      /* Transitioning 'all' can be acceptable for buttons if multiple properties change.
-        The key animated properties (transform, box-shadow, background-color) are generally performant.
-      */
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       text-align: center;
       position: relative;
       overflow: hidden;
       letter-spacing: 0.5px;
+      /* Add slight lift on active/focus for better UX */
+      &:active, &:focus {
+          transform: translateY(-1px);
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      }
     }
+    /* Primary Button Style */
     .btn-primary {
       background: var(--su-gradient-primary);
       color: white;
@@ -116,6 +129,7 @@
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 12px 20px -3px rgba(29, 78, 216, 0.35), 0 8px 10px -6px rgba(29, 78, 216, 0.25);
     }
+    /* Secondary Button Style */
     .btn-secondary {
       background-color: white;
       color: var(--su-primary);
@@ -125,53 +139,60 @@
       border-color: var(--su-primary);
       transform: translateY(-2px);
     }
+    /* CTA Green Button Style */
     .btn-cta-green {
       background: var(--su-accent-new);
       color: white;
       box-shadow: 0 5px 15px -3px rgba(20, 184, 166, 0.4), 0 4px 6px -4px rgba(20, 184, 166, 0.3);
     }
     .btn-cta-green:hover {
-      background: #0F766E;
+      background: #0F766E; /* Darker shade on hover */
       transform: translateY(-3px) scale(1.02);
       box-shadow: 0 12px 20px -3px rgba(20, 184, 166, 0.45), 0 8px 10px -6px rgba(20, 184, 166, 0.35);
     }
 
+    /* Fancy Flash Card Hover Effect */
     .flash-card-fancy {
       position: relative;
       overflow: hidden;
       z-index: 1;
       cursor: pointer;
       transition:
-        box-shadow 0.18s cubic-bezier(0.4,0,0.2,1),
-        transform 0.18s cubic-bezier(0.4,0,0.2,1);
-      will-change: transform, box-shadow; /* Good use of will-change */
+        box-shadow 0.3s cubic-bezier(0.4,0,0.2,1), /* Increased duration slightly */
+        transform 0.3s cubic-bezier(0.4,0,0.2,1),
+        border-color 0.3s cubic-bezier(0.4,0,0.2,1);
+      will-change: transform, box-shadow;
     }
     .flash-card-fancy:hover {
-      transform: scale(1.045);
+      transform: scale(1.03); /* Reduced scale slightly */
       box-shadow:
-        0 10px 40px 0 rgba(99, 102, 241, 0.32),
-        0 2px 16px 0 rgba(20, 184, 166, 0.15);
+        0 15px 30px 0 rgba(99, 102, 241, 0.25), /* Adjusted shadow */
+        0 5px 15px 0 rgba(20, 184, 166, 0.1); /* Adjusted shadow */
       border-color: var(--su-accent-new);
     }
 
+    /* Section Padding */
     .section {
       padding-top: 7rem;
       padding-bottom: 7rem;
     }
 
+    /* Hero Section Styling with Gradient Animation */
     #hero {
       background: var(--su-gradient-hero);
       background-size: 300% 300%;
       animation: gradientFlow 15s ease infinite;
-      /* Note: Animating background-position for gradients can be performance-intensive. 
-         If jank is observed, consider a static image or a simpler gradient effect. */
       position: relative;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
+      min-height: 60vh; /* Increased min-height for better visual */
+      padding-top: 10rem; /* Adjust padding for fixed header */
+      padding-bottom: 10rem;
     }
+    /* Hero Section Overlay Pattern */
     #hero::before {
       content: '';
       position: absolute;
@@ -185,11 +206,11 @@
       opacity: 0.7;
     }
 
+    /* Dark Background Sections with Pattern */
     #achievements, footer {
       background: var(--su-bg-dark);
       position: relative;
     }
-
     #achievements::before, footer::before {
       content: '';
       position: absolute;
@@ -197,11 +218,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* Data URI for SVG pattern is good for reducing HTTP requests for small assets. */
+      /* SVG Pattern as Data URI */
       background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
       z-index: 0;
+      pointer-events: none; /* Ensure pattern doesn't block interaction */
     }
 
+    /* Footer Top Border Gradient */
     footer::after {
       content: '';
       position: absolute;
@@ -212,33 +235,68 @@
       background: var(--su-gradient-secondary);
     }
 
-    /* Animations on scroll use opacity and transform, which are performant. */
+    /* Base styles for elements that will be animated on scroll */
     .animate-on-scroll {
       opacity: 0;
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      /* Initial state for transform animations */
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Increased duration for smoother effect */
+      will-change: opacity, transform; /* Optimisation hint */
     }
-    .animate-fadeIn.animate-on-scroll { transform: translateY(20px); }
-    .animate-slideInUp.animate-on-scroll { transform: translateY(40px); }
-    .animate-slideInLeft.animate-on-scroll { transform: translateX(-40px); }
-    .animate-slideInRight.animate-on-scroll { transform: translateX(40px); }
-    .animate-scaleUp.animate-on-scroll { transform: scale(0.9); }
 
+    /* State when element is visible and animation should play */
     .animate-on-scroll.is-visible {
       opacity: 1;
-      transform: translateY(0) translateX(0) scale(1);
+      transform: translateY(0) translateX(0) scale(1); /* Reset transform */
     }
 
+    /* Specific animation keyframes */
     @keyframes gradientFlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
+    /* Keyframes for scroll animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(40px); } /* Increased initial translateY */
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+     @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-40px); } /* Added slide in left */
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+     @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(40px); } /* Added slide in right */
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes scaleUp {
+      from { opacity: 0; transform: scale(0.9); } /* Adjusted initial scale */
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Apply animations when element is visible */
+    .animate-on-scroll.is-visible.animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
+    .animate-on-scroll.is-visible.animate-slideInUp { animation: slideInUp 0.8s ease-out forwards; }
+    .animate-on-scroll.is-visible.animate-slideInLeft { animation: slideInLeft 0.8s ease-out forwards; }
+    .animate-on-scroll.is-visible.animate-slideInRight { animation: slideInRight 0.8s ease-out forwards; }
+    .animate-on-scroll.is-visible.animate-scaleUp { animation: scaleUp 0.8s ease-out forwards; }
+
+
+    /* Responsive Mobile Menu */
     @media (max-width: 1023px) {
       .mobile-menu-container {
         display: none;
         position: fixed;
-        top: 70px;
+        top: 70px; /* Aligned below header */
         left: 0;
         right: 0;
         background-color: var(--su-card-bg);
@@ -249,23 +307,30 @@
         border-bottom-right-radius: 1rem;
         max-height: calc(100vh - 70px);
         overflow-y: auto;
+        /* Add transition for smooth opening/closing */
+        transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        transform: translateY(-20px);
+        opacity: 0;
       }
       .mobile-menu-container.open {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
+        transform: translateY(0);
+        opacity: 1;
       }
     }
 
+    /* Header Scroll State */
     header.scrolled {
         background-color: rgba(255, 255, 255, 0.95);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        backdrop-filter: blur(8px); /* Note: backdrop-filter can be expensive on some devices. Test performance. */
-        height: 70px;
+        backdrop-filter: blur(8px); /* Note: Test performance */
+        height: 70px; /* Fixed height when scrolled */
     }
     header {
-        height: 80px;
-        /* Tailwind's transition-all is used here, which is generally fine for header state changes. */
+        height: 80px; /* Initial height */
+        transition: all 0.3s ease-in-out; /* Smooth transition for height and background */
     }
   </style>
 </head>
@@ -274,32 +339,32 @@
     <div class="w-16 h-16 border-4 border-[var(--su-primary)] border-t-[var(--su-accent-new)] rounded-full animate-spin"></div>
   </div>
 
-<button id="backToTop" class="fixed bottom-8 right-8 bg-[var(--su-primary)] hover:bg-[var(--su-primary-dark)] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 opacity-0 invisible hover:scale-110 z-50">
+  <button id="backToTop" class="fixed bottom-8 right-8 bg-[var(--su-primary)] hover:bg-[var(--su-primary-dark)] text-white w-12 h-12 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 opacity-0 invisible hover:scale-110 z-50">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
     </svg>
-</button>
+  </button>
 
   <header class="fixed inset-x-0 top-0 z-50 flex items-center transition-all duration-300 ease-in-out">
     <div class="container mx-auto px-6 flex items-center justify-between">
-<a href="#hero" class="inline-flex items-center gap-3 group transition-all duration-300">
-  <img src="img/logo.png"
-       alt="Aryal.in Logo"
-       class="h-10 w-auto sm:h-12 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-3deg] drop-shadow-lg"
-       loading="lazy" decoding="async"
-       onerror="this.onerror=null;this.src='https://placehold.co/120x48/2563eb/fff?text=Logo';">
-  <span class="text-2xl sm:text-3xl font-bold font-display bg-[var(--su-gradient-secondary)] bg-clip-text text-[var(--su-primary-dark)] text-[var(--su-primary-dark) transition-colors duration-300 group-hover:scale-110">
-    Aryal.in
-  </span>
-</a>
-        <nav class="hidden lg:flex items-center space-x-10">
+      <a href="#hero" class="inline-flex items-center gap-3 group transition-all duration-300">
+        <img src="img/logo.png"
+             alt="Aryal.in Logo"
+             class="h-10 w-auto sm:h-12 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-3deg] drop-shadow-lg"
+             loading="lazy" decoding="async"
+             onerror="this.onerror=null;this.src='https://placehold.co/120x48/2563eb/fff?text=Logo';">
+        <span class="text-2xl sm:text-3xl font-bold font-display bg-[var(--su-gradient-secondary)] bg-clip-text text-transparent transition-colors duration-300 group-hover:opacity-90">
+          Aryal.in
+        </span>
+      </a>
+      <nav class="hidden lg:flex items-center space-x-10">
         <a href="#hero" class="nav-item text-[var(--su-text-dark)] font-medium">Home</a>
         <a href="#services" class="nav-item text-[var(--su-text-dark)] font-medium">Services</a>
         <a href="#portfolio" class="nav-item text-[var(--su-text-dark)] font-medium">Work</a>
         <a href="#about" class="nav-item text-[var(--su-text-dark)] font-medium">About</a>
         <a href="#contact" class="nav-item text-[var(--su-text-dark)] font-medium">Contact</a>
       </nav>
-      <button class="lg:hidden mobile-nav-toggle text-2xl text-[var(--su-text-muted)]" aria-label="Toggle menu">
+      <button class="lg:hidden mobile-nav-toggle text-2xl text-[var(--su-text-muted)]" aria-label="Toggle menu" aria-expanded="false">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
         </svg>
@@ -314,23 +379,23 @@
     </nav>
   </header>
 
-  <main class="pt-20">
-<section id="hero" class="section py-14 flex items-center relative min-h-[48vh]">
-  <div class="container mx-auto px-6 relative z-10 text-center">
-    <div class="max-w-2xl mx-auto">
-      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white mb-4 leading-tight animate-on-scroll animate-slideInUp is-visible" data-delay="0.1s">
-        Innovate. Customise. Elevate.
-      </h1>
-      <p class="text-base sm:text-lg text-white/90 mb-6 leading-relaxed animate-on-scroll animate-slideInUp is-visible" data-delay="0.3s">
-        Next-gen WordPress & SEO for your digital growth.
-      </p>
-      <div class="flex flex-wrap gap-4 justify-center animate-on-scroll animate-slideInUp is-visible" data-delay="0.5s">
-        <a href="#contact" class="btn btn-primary text-m">Launch Your Project</a>
-        <a href="#portfolio" class="btn btn-secondary text-m">See My Works</a>
+  <main>
+    <section id="hero" class="section py-14 flex items-center relative">
+      <div class="container mx-auto px-6 relative z-10 text-center">
+        <div class="max-w-2xl mx-auto">
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-display font-extrabold text-white mb-4 leading-tight animate-on-scroll animate-slideInUp" data-delay="0.1s">
+            Innovate. Customise. Elevate.
+          </h1>
+          <p class="text-base sm:text-lg text-white/90 mb-8 leading-relaxed animate-on-scroll animate-slideInUp" data-delay="0.3s">
+            Next-gen WordPress & SEO for your digital growth.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center animate-on-scroll animate-slideInUp" data-delay="0.5s">
+            <a href="#contact" class="btn btn-primary text-m">Launch Your Project</a>
+            <a href="#portfolio" class="btn btn-secondary text-m">See My Works</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
     <section id="services" class="section bg-[var(--su-bg-light)]">
       <div class="container mx-auto px-6">
@@ -340,20 +405,21 @@
             Solutions Crafted for Your Success
           </h2>
         </div>
-        
+
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.5s">
+          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.2s">
             <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-[var(--su-accent)] to-[var(--su-primary-light)] flex items-center justify-center mb-8 shadow-lg card-icon-container transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <rect x="3" y="5" width="18" height="14" rx="3" />
-              <path d="M3 9h18" />
-            </svg>
+              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <rect x="3" y="5" width="18" height="14" rx="3" />
+                <path d="M3 9h18" />
+              </svg>
             </div>
             <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">Portfolio, Landing sites</h3>
             <p class="text-[var(--su-text-muted)] text-lg leading-relaxed">
-              Stand out with a stunning portfolio, high-converting landing page, or dynamic blog. </p>
-          </div>          
-          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.2s">
+              Stand out with a stunning portfolio, high-converting landing page, or dynamic blog.
+            </p>
+          </div>
+          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.35s">
             <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-[var(--su-primary)] to-[var(--su-accent)] flex items-center justify-center mb-8 shadow-lg card-icon-container transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
@@ -361,10 +427,10 @@
             </div>
             <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-4">WordPress Mastery</h3>
             <p class="text-[var(--su-text-muted)] text-lg leading-relaxed">
-              Custom themes, ecosystems, headless WordPress, and <br>e-commerce powerhouses, engineered for peak performance and scalability.
+              Custom themes, ecosystems, headless WordPress, and e-commerce powerhouses, engineered for peak performance and scalability.
             </p>
           </div>
-          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.35s">
+          <div class="content-card animate-on-scroll animate-scaleUp" data-delay="0.5s">
             <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-[var(--su-secondary)] to-[var(--su-accent-new)] flex items-center justify-center mb-8 shadow-lg card-icon-container transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -379,93 +445,92 @@
       </div>
     </section>
 
-<section id="portfolio" class="section bg-white">
-  <div class="container mx-auto px-6">
-    <div class="max-w-3xl mx-auto text-center mb-20">
-      <span class="text-[var(--su-accent-new)] font-semibold text-sm tracking-wider mb-4 inline-block animate-on-scroll animate-fadeIn" data-delay="0s">MY WORK</span>
-      <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--su-text-dark)] mb-6 animate-on-scroll animate-slideInUp" data-delay="0.1s">
-        Transforming Visions into Reality
-      </h2>
-      <p class="text-lg text-[var(--su-text-muted)] animate-on-scroll animate-slideInUp" data-delay="0.2s">
-        A glimpse into projects where I have partnered with clients to achieve remarkable digital outcomes.
-      </p>
-    </div>
-    <div class="grid md:grid-cols-2 gap-10">
-      <a href="https://airdropbounty.events" target="_blank" rel="noopener noreferrer" class="content-card group no-underline animate-on-scroll animate-scaleUp" data-delay="0.3s">
-        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6 shadow-md">
-          <img 
-            src="https://airdropbounty.events/wp-content/uploads/2022/07/Airdrop_bounty_logo-removebg-preview.png" 
-            alt="AirdropBounty.events Project" 
-            class="w-full h-full max-h-40 object-contain bg-white p-4 transition-transform duration-300 group-hover:scale-105 rounded-xl"
-            loading="lazy" decoding="async"
-            onerror="this.onerror=null;this.src='https://placehold.co/600x338/E0E0E0/757575?text=Image+Not+Found&font=poppins';">
+    <section id="portfolio" class="section bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto text-center mb-12">
+          <span class="text-teal-500 font-medium text-sm tracking-widest uppercase mb-3 inline-block animate-on-scroll animate-fadeIn" data-delay="0s">My Work</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 animate-on-scroll animate-slideInUp" data-delay="0.1s">
+            Transforming Visions into Reality
+          </h2>
+          <p class="text-base sm:text-lg text-gray-600 animate-on-scroll animate-slideInUp" data-delay="0.2s">
+            Explore projects where I’ve turned ideas into impactful digital experiences.
+          </p>
         </div>
-        <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">AirdropBounty.events</h3>
-        <p class="text-[var(--su-text-muted)] text-lg">Crypto Airdrop & Bounty Platform</p>
-      </a>
-      <a href="https://pixelproduction.com" target="_blank" rel="noopener noreferrer" class="content-card group no-underline animate-on-scroll animate-scaleUp" data-delay="0.45s">
-        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6 shadow-md">
-          <img 
-            src="https://pixelproduction.com/wp-content/uploads/2021/04/pixelproducion-logo.jpeg" 
-            alt="PixelProduction.com Project" 
-            class="w-full h-full max-h-40 object-contain bg-white p-4 transition-transform duration-300 group-hover:scale-105 rounded-xl"
-            loading="lazy" decoding="async"
-            onerror="this.onerror=null;this.src='https://placehold.co/600x338/E0E0E0/757575?text=PixelProduction.com&font=poppins';">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <a href="https://airdropbounty.events" target="_blank" rel="noopener noreferrer" class="content-card group no-underline bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 animate-on-scroll animate-scaleUp" data-delay="0.3s">
+            <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-4 bg-white flex items-center justify-center">
+              <img
+                src="https://airdropbounty.events/wp-content/uploads/2022/07/Airdrop_bounty_logo-removebg-preview.png"
+                alt="AirdropBounty.events Project"
+                class="w-full h-full max-h-24 object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+                loading="lazy" decoding="async"
+                onerror="this.src='https://placehold.co/300x169/EAEAEA/666666?text=AirdropBounty&font=poppins';">
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 px-4 mb-1 group-hover:text-teal-500 transition-colors">AirdropBounty.events</h3>
+            <p class="text-gray-600 text-sm px-4 pb-4">Crypto Airdrop & Bounty Platform</p>
+          </a>
+          <a href="https://pixelproduction.com" target="_blank" rel="noopener noreferrer" class="content-card group no-underline bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 animate-on-scroll animate-scaleUp" data-delay="0.45s">
+            <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-4 bg-white flex items-center justify-center">
+              <img
+                src="https://pixelproduction.com/wp-content/uploads/2021/04/pixelproducion-logo.jpeg"
+                alt="PixelProduction.com Project"
+                class="w-full h-full max-h-24 object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+                loading="lazy" decoding="async"
+                onerror="this.src='https://placehold.co/300x169/EAEAEA/666666?text=PixelProduction&font=poppins';">
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 px-4 mb-1 group-hover:text-teal-500 transition-colors">PixelProduction.com</h3>
+            <p class="text-gray-600 text-sm px-4 pb-4">Creative Agency Portfolio</p>
+          </a>
+          <a href="https://seoplusmedia.com" target="_blank" rel="noopener noreferrer" class="content-card group no-underline bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 animate-on-scroll animate-scaleUp" data-delay="0.6s">
+            <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-4 bg-white flex items-center justify-center">
+              <img
+                src="https://seoplusmedia.com/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-26-at-20.06.07-300x161.jpeg"
+                alt="SEOPlusMedia.com Project"
+                class="w-full h-full max-h-24 object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+                loading="lazy" decoding="async"
+                onerror="this.src='https://placehold.co/300x169/EAEAEA/666666?text=SEOPlusMedia&font=poppins';">
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 px-4 mb-1 group-hover:text-teal-500 transition-colors">SEOPlusMedia.com</h3>
+            <p class="text-gray-600 text-sm px-4 pb-4">Digital Marketing Agency</p>
+          </a>
+          <a href="https://zestofmusic.github.io" target="_blank" rel="noopener noreferrer" class="content-card group no-underline bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 animate-on-scroll animate-scaleUp" data-delay="0.75s">
+            <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-4 bg-white flex items-center justify-center">
+              <img
+                src="https://placehold.co/300x169/14B8A6/FFFFFF?text=ZestOfMusic&font=Poppins"
+                alt="ZestOfMusic Project"
+                class="w-full h-full max-h-24 object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+                loading="lazy" decoding="async"
+                onerror="this.src='https://placehold.co/300x169/EAEAEA/666666?text=ZestOfMusic&font=poppins';">
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 px-4 mb-1 group-hover:text-teal-500 transition-colors">ZestOfMusic</h3>
+            <p class="text-gray-600 text-sm px-4 pb-4">Creative & Production Portfolio</p>
+          </a>
         </div>
-        <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">PixelProduction.com</h3>
-        <p class="text-[var(--su-text-muted)] text-lg">Creative Agency Portfolio Showcase</p>
-      </a>
-      <a href="https://seoplusmedia.com" target="_blank" rel="noopener noreferrer" class="content-card group no-underline animate-on-scroll animate-scaleUp" data-delay="0.6s">
-        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6 shadow-md">
-          <img 
-            src="https://seoplusmedia.com/wp-content/uploads/2023/10/WhatsApp-Image-2023-10-26-at-20.06.07-300x161.jpeg" 
-            alt="SEOPlusMedia.com Project" 
-            class="w-full h-full max-h-40 object-contain bg-white p-4 transition-transform duration-300 group-hover:scale-105 rounded-xl"
-            loading="lazy" decoding="async"
-            onerror="this.onerror=null;this.src='https://placehold.co/600x338/E0E0E0/757575?text=SEOPlusMedia.com&font=poppins';">
-        </div>
-        <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">SEOPlusMedia.com</h3>
-        <p class="text-[var(--su-text-muted)] text-lg">Digital Marketing Agency Site</p>
-      </a>
-      <a href="https://zestofmusic.github.io" target="_blank" rel="noopener noreferrer" class="content-card group no-underline animate-on-scroll animate-scaleUp" data-delay="0.75s">
-        <div class="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden mb-6 shadow-md">
-          <img 
-            src="https://placehold.co/600x338/14B8A6/FFFFFF?text=ZestOfMusic&font=Poppins" 
-            alt="ZestOfMusic Project" 
-            class="w-full h-full max-h-40 object-contain bg-white p-4 transition-transform duration-300 group-hover:scale-105 rounded-xl"
-            loading="lazy" decoding="async"
-            onerror="this.onerror=null;this.src='https://placehold.co/600x338/E0E0E0/757575?text=ZestOfMusic&font=poppins';">
-        </div>
-        <h3 class="text-2xl font-semibold text-[var(--su-text-dark)] mb-2 group-hover:text-[var(--su-primary)] transition-colors">ZestOfMusic</h3>
-        <p class="text-[var(--su-text-muted)] text-lg">Portfolio website - showcasing creative & production expertise</p>
-      </a>
-    </div>
-  </div>
-</section>
+      </div>
+    </section>
 
-    <section id="achievements" class="section text-white"> <div class="container mx-auto px-6 relative z-10">
+    <section id="achievements" class="section text-white">
+      <div class="container mx-auto px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center mb-20">
           <span class="text-[var(--su-accent-new)] font-semibold text-sm tracking-wider mb-4 inline-block animate-on-scroll animate-fadeIn" data-delay="0s">PROVEN RESULTS</span>
           <h2 class="text-4xl lg:text-5xl font-display font-bold text-white mb-6 animate-on-scroll animate-slideInUp" data-delay="0.1s">
             Impact That Speaks Volumes
           </h2>
         </div>
-        
+
         <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.2s">
-            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="40">0</div>
+            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="40" data-suffix="%">0</div>
             <p class="text-white/80 text-lg">Avg. Organic Traffic Increase</p>
           </div>
           <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.35s">
-            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="50" data-suffix="+">0</div>
-            <p class="text-white/80 text-lg">Conversion Rate Uplift</p>
+            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="50" data-suffix="+%">0</div> <p class="text-white/80 text-lg">Conversion Rate Uplift</p>
           </div>
           <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.5s">
             <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="100" data-suffix="%">0</div>
             <p class="text-white/80 text-lg">Client Satisfaction</p>
           </div>
-          <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.01s">
-            <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="200" data-suffix="+">0</div>
+          <div class="content-card bg-white/10 backdrop-blur-md border border-white/20 text-center animate-on-scroll animate-fadeIn" data-delay="0.65s"> <div class="text-5xl font-display font-bold text-white mb-3 counter" data-target="200" data-suffix="+">0</div>
             <p class="text-white/80 text-lg">Lead Generation</p>
           </div>
         </div>
@@ -483,11 +548,11 @@
             I am a passionate developer specializing in bespoke WordPress solutions and data-driven SEO strategies that deliver tangible business impact and lasting online success.
           </p>
         </div>
-        
+
         <div class="grid md:grid-cols-2 gap-16 items-center">
           <div class="animate-on-scroll animate-slideInLeft" data-delay="0.3s">
             <div class="rounded-3xl overflow-hidden shadow-2xl aspect-w-1 aspect-h-1">
-              <img src="img/aryal_in.jpg" alt="Aryal.in Team - Digital Experts" class="w-full h-full object-cover" 
+              <img src="img/aryal_in.jpg" alt="Aryal.in Team - Digital Experts" class="w-full h-full object-cover"
                    loading="lazy" decoding="async"
                    onerror="this.onerror=null;this.src='https://placehold.co/600x600/E0E0E0/757575?text=Image+Not+Found&font=poppins';">
             </div>
@@ -552,14 +617,13 @@
           </div>
         </div>
         <div class="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto mt-16">
-          <div class="bg-[var(--su-bg-light)] border border-[var(--su-border)] rounded-2xl p-8 animate-on-scroll animate-scaleUp flash-card-fancy transition-all duration-500" data-delay="0.1s">
+          <div class="bg-[var(--su-bg-light)] border border-[var(--su-border)] rounded-2xl p-8 animate-on-scroll animate-scaleUp flash-card-fancy" data-delay="0.1s">
             <h4 class="text-[var(--su-text-dark)] font-semibold text-xl mb-2">Custom Packages</h4>
             <p class="text-base text-[var(--su-text-muted)] text-justify">
               Get a landing page, blog, or business site—custom-built or converted from HTML to WordPress.
             </p>
           </div>
-          <div class="bg-[var(--su-bg-light)] border border-[var(--su-border)] rounded-2xl p-8 animate-on-scroll animate-scaleUp flash-card-fancy transition-all duration-500" data-delay="0.1">
-            <h4 class="text-[var(--su-text-dark)] font-semibold text-xl mb-2">Your Vision, Built for You</h4>
+          <div class="bg-[var(--su-bg-light)] border border-[var(--su-border)] rounded-2xl p-8 animate-on-scroll animate-scaleUp flash-card-fancy" data-delay="0.25s"> <h4 class="text-[var(--su-text-dark)] font-semibold text-xl mb-2">Your Vision, Built for You</h4>
             <p class="text-base text-[var(--su-text-muted)] text-justify">
               One-page sites, blogs, or custom WordPress builds—tailored to your needs, no templates.
             </p>
@@ -568,15 +632,17 @@
         </div>
       </div>
     </section>
-    </main>
+  </main>
 
-  <footer class="py-16 text-center"> <div class="container mx-auto px-6 relative z-10">
+  <footer class="py-16 text-center">
+    <div class="container mx-auto px-6 relative z-10">
       <a href="#hero" class="text-3xl font-bold font-display bg-[var(--su-gradient-secondary)] bg-clip-text text-transparent inline-block mb-8">Aryal.in</a>
       <div class="flex justify-center space-x-6 mb-8">
         <a href="#services" class="text-white/90 hover:text-[var(--su-accent-new)] transition-colors">Services</a>
         <a href="#portfolio" class="text-white/90 hover:text-[var(--su-accent-new)] transition-colors">Work</a>
         <a href="#about" class="text-white/90 hover:text-[var(--su-accent-new)] transition-colors">About</a>
-        <a href="#contact" class="text-white/90 hover:text-[var(--su-accent-new)] transition-colors">Contact</a></div>
+        <a href="#contact" class="text-white/90 hover:text-[var(--su-accent-new)] transition-colors">Contact</a>
+      </div>
       <p class="text-md text-[var(--su-text-muted)] mb-3">© <span id="currentYear"></span> Aryal.in All Rights Reserved.</p>
       <p class="text-sm text-[var(--su-text-muted)] opacity-80">Innovating Digital Futures, One Pixel at a Time.</p>
     </div>
@@ -584,92 +650,163 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Preloader logic - good for perceived performance.
+
+      // --- Preloader Logic ---
+      // Hides the preloader after the page and all assets are fully loaded.
       const preloader = document.getElementById('preloader');
       if (preloader) {
-        window.addEventListener('load', () => { // Waits for all assets including images
+        window.addEventListener('load', () => {
             setTimeout(() => {
                 preloader.style.opacity = '0';
                 setTimeout(() => {
                     preloader.style.display = 'none';
-                }, 500); // Corresponds to transition duration
-            }, 300); // Small delay to ensure transition is visible
+                }, 500); // Matches the CSS transition duration
+            }, 300); // Small delay for a smoother fade-out effect
         });
       }
 
-      // Set current year in footer
+      // --- Set Current Year in Footer ---
       const currentYearEl = document.getElementById('currentYear');
       if (currentYearEl) {
         currentYearEl.textContent = new Date().getFullYear();
       }
-      
-      // Header scroll effect - uses CSS transitions triggered by class change.
+
+      // --- Header Scroll Effect ---
+      // Adds a 'scrolled' class to the header when the user scrolls down,
+      // changing its appearance (background, height, shadow).
       const header = document.querySelector('header');
       if (header) {
-        const headerHeight = header.offsetHeight; // Get initial height
+        const headerHeight = header.offsetHeight; // Get initial height for calculation
         window.addEventListener('scroll', () => {
-          if (window.scrollY > headerHeight / 2) { // Trigger when scrolled past half of header height
+          // Trigger when scrolled past half of the initial header height
+          if (window.scrollY > headerHeight / 2) {
             header.classList.add('scrolled');
           } else {
             header.classList.remove('scrolled');
           }
-        }, { passive: true }); // Use passive listener for scroll events for better performance
+        }, { passive: true }); // Use passive listener for performance
       }
 
-      // Mobile menu toggle
+      // --- Mobile Menu Toggle ---
+      // Handles opening and closing the mobile navigation menu.
       const toggleButton = document.querySelector('.mobile-nav-toggle');
       const mobileMenu = document.getElementById('mobileMenu');
-      
+
       if (toggleButton && mobileMenu) {
         toggleButton.addEventListener('click', () => {
           const isOpen = mobileMenu.classList.toggle('open');
-          toggleButton.setAttribute('aria-expanded', isOpen.toString());
-          document.body.style.overflow = isOpen ? 'hidden' : ''; 
+          toggleButton.setAttribute('aria-expanded', isOpen.toString()); // Accessibility
+          // Prevent body scroll when menu is open
+          document.body.style.overflow = isOpen ? 'hidden' : '';
+          // Change toggle button icon based on menu state
           toggleButton.innerHTML = isOpen
             ? `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`
             : `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`;
         });
 
+        // Close mobile menu when a link is clicked
         document.querySelectorAll('#mobileMenu a').forEach(link => {
           link.addEventListener('click', () => {
             if (mobileMenu.classList.contains('open')) {
               mobileMenu.classList.remove('open');
               toggleButton.setAttribute('aria-expanded', 'false');
-              document.body.style.overflow = '';
+              document.body.style.overflow = ''; // Restore body scroll
+              // Reset toggle button icon
               toggleButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`;
             }
           });
         });
       }
 
-      // Back to top button
+      // --- Back to Top Button ---
+      // Shows/hides the back-to-top button based on scroll position
+      // and provides smooth scrolling functionality.
       const backToTopButton = document.getElementById('backToTop');
       if (backToTopButton) {
         window.addEventListener('scroll', () => {
-          if (window.scrollY > 400) { 
+          // Show button when scrolled past 400px
+          if (window.scrollY > 400) {
             backToTopButton.style.opacity = '1';
             backToTopButton.classList.remove('invisible');
           } else {
             backToTopButton.style.opacity = '0';
             backToTopButton.classList.add('invisible');
           }
-        }, { passive: true }); // Passive listener for scroll
+        }, { passive: true }); // Passive listener
+
+        // Smooth scroll to top on button click
         backToTopButton.addEventListener('click', (e) => {
           e.preventDefault();
           window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       }
 
-      // Smooth scroll for anchor links & active nav state
-      // This uses native 'smooth' behavior which is well-optimized.
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      // --- Smooth Scroll for Anchor Links & Active Nav State (Scrollspy) ---
+      // Uses native smooth scroll behavior for links pointing to sections.
+      // Also highlights the active navigation link based on the current scroll position.
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('header nav a.nav-item');
+      const mobileNavLinks = document.querySelectorAll('#mobileMenu a.nav-item');
+      const allNavLinks = [...navLinks, ...mobileNavLinks];
+
+      // Function to highlight the active navigation link
+      function highlightNav() {
+        let currentSectionId = '';
+        // Adjust scroll position by header height for accurate section detection
+        const headerActualHeight = document.querySelector('header')?.offsetHeight || 70;
+        const scrollPosition = window.scrollY + headerActualHeight + 50; // Add offset
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+          }
+        });
+
+        // Handle highlighting the last section when scrolled near the bottom
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+            const lastSection = sections[sections.length - 1];
+            if (lastSection) currentSectionId = lastSection.getAttribute('id');
+        }
+
+        // Remove active class from all links and add to the current one
+        allNavLinks.forEach(link => {
+          link.classList.remove('nav-link-active');
+          const linkHref = link.getAttribute('href');
+          if (linkHref && linkHref.length > 1 && linkHref.substring(1) === currentSectionId) {
+            link.classList.add('nav-link-active');
+          }
+        });
+
+        // Handle initial state (top of the page)
+        if (!currentSectionId && sections.length > 0 && window.scrollY < (sections[0].offsetTop - headerActualHeight - 50)) {
+            allNavLinks.forEach(link => {
+                if (link.getAttribute('href') === '#hero') {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        } else if (!currentSectionId && allNavLinks.length > 0 && sections.length === 0) {
+             // Fallback if no sections are found (shouldn't happen with this structure)
+             allNavLinks[0]?.classList.add('nav-link-active');
+        }
+      }
+
+      // Attach scroll listener for navigation highlighting
+      window.addEventListener('scroll', highlightNav, { passive: true }); // Passive listener
+      highlightNav(); // Initial call to set the active link on page load
+
+      // Smooth scroll for anchor links
+       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
-          if (href && href.length > 1 && href.startsWith('#')) { 
+          if (href && href.length > 1 && href.startsWith('#')) {
             const targetEl = document.querySelector(href);
             if (targetEl) {
-              e.preventDefault(); 
+              e.preventDefault();
               const headerActualHeight = document.querySelector('header')?.offsetHeight || 0;
+              // Calculate target position considering fixed header
               const targetPosition = targetEl.getBoundingClientRect().top + window.pageYOffset - headerActualHeight;
               window.scrollTo({
                 top: targetPosition,
@@ -679,155 +816,100 @@
           }
         });
       });
-      
-      // Intersection Observer for animations on scroll - efficient way to trigger animations.
+
+
+      // --- Intersection Observer for Animations on Scroll ---
+      // Triggers animations when elements with the 'animate-on-scroll' class
+      // become visible in the viewport. Uses IntersectionObserver for efficiency.
       const animatedElements = document.querySelectorAll('.animate-on-scroll');
       const observerOptions = {
         threshold: 0.1, // Trigger when 10% of the element is visible
-        // rootMargin: "0px 0px -50px 0px" // Optional: Adjust viewport for triggering
+        rootMargin: "0px 0px -50px 0px" // Trigger slightly before reaching the bottom of the viewport
       };
-      const observer = new IntersectionObserver((entries) => {
+
+      const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             const delay = entry.target.dataset.delay || '0s';
-            entry.target.style.transitionDelay = delay;
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target); 
+            entry.target.style.transitionDelay = delay; // Apply animation delay
+            entry.target.classList.add('is-visible'); // Trigger CSS animation
+            obs.unobserve(entry.target); // Stop observing once animated
           }
         });
       }, observerOptions);
 
+      // Start observing each element
       animatedElements.forEach(el => {
         observer.observe(el);
       });
 
-      // Number Counter Animation - uses requestAnimationFrame for smooth animation.
+      // --- Number Counter Animation ---
+      // Animates numerical counters when the achievements section becomes visible.
       function animateCounters() {
         const counters = document.querySelectorAll('.counter');
-        const speed = 200; 
+        const speed = 200; // Controls the duration of the animation
 
         counters.forEach(counter => {
-          const target = +counter.dataset.target;
-          const suffix = counter.dataset.suffix || '';
-          let count = 0;
-          
+          const target = +counter.dataset.target; // Get the target number
+          const suffix = counter.dataset.suffix || ''; // Get the suffix (e.g., %, +)
+          let count = 0; // Start count from 0
+
+          // Function to update the counter value
           const updateCount = () => {
-            const increment = Math.max(1, target / speed); // Ensure increment is at least 1
+            // Calculate increment, ensuring it's at least 1
+            const increment = Math.max(1, target / speed);
             count += increment;
 
             if (count < target) {
+              // Update text with rounded value and suffix
               counter.innerText = Math.ceil(count) + suffix;
+              // Continue animation on the next frame
               requestAnimationFrame(updateCount);
             } else {
-              counter.innerText = target + suffix; 
+              // Set the final target value
+              counter.innerText = target + suffix;
             }
           };
-          requestAnimationFrame(updateCount); // Start the animation
-        });
-
-        // This part for range counters seems to have a slight logic flaw in original,
-        // it would animate to 'min' then jump to 'min-max'.
-        // For simplicity, I'll assume the original intent was to animate to 'min' if 'max' wasn't primary.
-        // If a range animation is truly needed, it would require a different approach.
-        // The current counter logic above handles single targets well.
-        const rangeCounters = document.querySelectorAll('.counter-range');
-        rangeCounters.forEach(counter => {
-            const min = +counter.dataset.min;
-            const max = +counter.dataset.max;
-            const suffix = counter.dataset.suffix || '';
-            // For simplicity, just setting the text directly for ranges or adapting the single counter logic
-            if (min && max) {
-                 counter.innerText = `${min}-${max}${suffix}`; // Or animate 'min' like other counters
-            } else if (min) { // If only min is defined, treat as a normal counter
-                let count = 0;
-                const updateRangeCount = () => {
-                    const increment = Math.max(1, min / speed);
-                    count += increment;
-                    if (count < min) {
-                        counter.innerText = Math.ceil(count) + suffix;
-                        requestAnimationFrame(updateRangeCount);
-                    } else {
-                        counter.innerText = min + suffix;
-                    }
-                };
-                requestAnimationFrame(updateRangeCount);
-            }
+          // Start the animation
+          requestAnimationFrame(updateCount);
         });
       }
 
+      // Use IntersectionObserver to trigger counter animation when achievements section is visible
       const achievementsSection = document.getElementById('achievements');
       if (achievementsSection) {
         const achievementObserver = new IntersectionObserver((entries, obs) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              animateCounters();
-              obs.unobserve(entry.target); 
+              animateCounters(); // Start counter animation
+              obs.unobserve(entry.target); // Stop observing once triggered
             }
           });
-        }, { threshold: 0.5 }); 
+        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
         achievementObserver.observe(achievementsSection);
       }
 
-      // Image fallback using onerror - already well implemented.
+      // --- Image Fallback ---
+      // Provides a placeholder image if the original image fails to load.
       document.querySelectorAll('img').forEach(img => {
         img.addEventListener('error', function() {
           const src = this.getAttribute('src');
+          // Attempt to parse placeholder info from existing src if it was a placeholder
           const match = src ? src.match(/placehold.co\/(\d+)x(\d+)\/([0-9a-fA-F]{6})?\/([0-9a-fA-F]{6})?\?text=([^&]+)/) : null;
-          const width = match && match[1] ? match[1] : (this.width > 1 ? this.width : '600');
-          const height = match && match[2] ? match[2] : (this.height > 1 ? this.height : '400');
+          // Use existing dimensions or defaults if parsing fails
+          const width = match && match[1] ? match[1] : (this.naturalWidth > 1 ? this.naturalWidth : (this.width > 1 ? this.width : '600'));
+          const height = match && match[2] ? match[2] : (this.naturalHeight > 1 ? this.naturalHeight : (this.height > 1 ? this.height : '400'));
           const bgColor = match && match[3] ? match[3] : 'E0E0E0';
           const textColor = match && match[4] ? match[4] : '757575';
+          // Use existing alt text or a default message
           const text = match && match[5] ? decodeURIComponent(match[5].replace(/\+/g, ' ')) : (this.alt || 'Image Missing');
-          
+
+          // Set the placeholder source
           this.src = `https://placehold.co/${width}x${height}/${bgColor}/${textColor}?text=${encodeURIComponent(text)}&font=poppins`;
-          this.alt = `Error loading: ${this.alt || text}`; 
-          this.removeEventListener('error', arguments.callee); 
+          this.alt = `Error loading: ${this.alt || text}`; // Update alt text
+          this.removeEventListener('error', arguments.callee); // Prevent infinite loops
         });
       });
-
-      // Scrollspy for navigation active state
-      const sections = document.querySelectorAll('section[id]');
-      const navLinks = document.querySelectorAll('header nav a.nav-item');
-      const mobileNavLinks = document.querySelectorAll('#mobileMenu a.nav-item');
-      const allNavLinks = [...navLinks, ...mobileNavLinks];
-
-      function highlightNav() {
-        let currentSectionId = '';
-        const headerActualHeight = document.querySelector('header')?.offsetHeight || 70;
-        
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - headerActualHeight - 50; 
-          if (window.scrollY >= sectionTop) {
-            currentSectionId = section.getAttribute('id');
-          }
-        });
-        
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) { 
-            const lastSection = sections[sections.length - 1];
-            if (lastSection) currentSectionId = lastSection.getAttribute('id');
-        }
-
-        allNavLinks.forEach(link => {
-          link.classList.remove('nav-link-active');
-          const linkHref = link.getAttribute('href');
-          if (linkHref && linkHref.length > 1 && linkHref.substring(1) === currentSectionId) {
-            link.classList.add('nav-link-active');
-          }
-        });
-
-        if (!currentSectionId && sections.length > 0 && window.scrollY < (sections[0].offsetTop - headerActualHeight - 50)) {
-            allNavLinks.forEach(link => {
-                if (link.getAttribute('href') === '#hero') {
-                    link.classList.add('nav-link-active');
-                }
-            });
-        } else if (!currentSectionId && allNavLinks.length > 0 && sections.length === 0) {
-             allNavLinks[0]?.classList.add('nav-link-active');
-        }
-      }
-
-      window.addEventListener('scroll', highlightNav, { passive: true }); // Passive listener
-      highlightNav(); // Initial call
     });
   </script>
 </body>
