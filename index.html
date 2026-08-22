@@ -47,163 +47,223 @@
   --paper:#f6f4f1; --card:#fffefc; --sunk:#efece7;
   --ink:#191714; --ink2:#585149; --ink3:#8d857a;
   --rule:#e2ded7; --rule2:#eae6e0;
-  --accent:#2d5a52; --accent2:#a8452f;
+  --accent:#2d5a52; --accent-soft:#e4ece9;
   --serif:"Newsreader",Georgia,"Times New Roman",serif;
   --sans:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.22,1,.36,1);
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --paper:#14130f; --card:#1b1915; --sunk:#100f0c;
+    --paper:#14130f; --card:#1c1a15; --sunk:#100f0c;
     --ink:#f0ede7; --ink2:#a9a196; --ink3:#7d766b;
     --rule:#2c2924; --rule2:#232019;
-    --accent:#7fbdaf; --accent2:#e0917b;
+    --accent:#7fbdaf; --accent-soft:#1b2725;
   }
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0; background:var(--paper); color:var(--ink);
-  font-family:var(--serif); font-size:19px; line-height:1.68;
-  -webkit-font-smoothing:antialiased;
-}
+body{margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--serif); font-size:18.5px; line-height:1.66; -webkit-font-smoothing:antialiased}
 ::selection{background:var(--accent); color:var(--paper)}
 :focus-visible{outline:1.5px solid var(--accent); outline-offset:3px; border-radius:2px}
-.page{max-width:660px; margin:0 auto; padding:0 26px 110px}
-@media (max-width:560px){ body{font-size:18px} .page{padding:0 20px 80px} }
+a{color:inherit; text-decoration:none}
 
-a{color:var(--ink); text-decoration:none; background-image:linear-gradient(var(--accent),var(--accent));
-  background-size:0% 1px; background-repeat:no-repeat; background-position:0 92%;
-  transition:background-size .4s var(--ease), color .3s ease; padding-bottom:1px}
-a:hover{background-size:100% 1px; color:var(--accent)}
+/* ---------- shell ---------- */
+.shell{max-width:1180px; margin:0 auto; padding:0 40px;
+  display:grid; grid-template-columns:326px minmax(0,1fr); gap:0 76px; align-items:start}
+@media (max-width:960px){ .shell{grid-template-columns:1fr; gap:0; padding:0 26px; max-width:720px} }
 
-/* header */
-header{padding:76px 0 8px}
-.portrait{position:relative; width:96px; height:96px; border-radius:50%; overflow:hidden;
-  background:var(--sunk); border:1px solid var(--rule); margin-bottom:26px;
-  display:flex; align-items:center; justify-content:center}
-.portrait img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
-.portrait span{font-family:var(--serif); font-size:34px; color:var(--ink3); letter-spacing:.02em}
-h1{font-family:var(--serif); font-weight:400; font-size:clamp(38px,7vw,56px); line-height:1.06;
-  letter-spacing:-.018em; margin:0 0 10px}
-.role{font-family:var(--sans); font-size:15.5px; letter-spacing:.02em; color:var(--ink2); margin:0 0 4px}
-.where{font-family:var(--sans); font-size:15.5px; color:var(--ink3); margin:0}
-.avail{display:inline-flex; align-items:center; gap:8px; font-family:var(--sans); font-size:13.5px;
-  color:var(--accent); margin-top:22px; letter-spacing:.01em}
-.avail i{width:6px; height:6px; border-radius:50%; background:var(--accent); flex:none}
+/* ---------- sticky identity panel ---------- */
+.side{position:sticky; top:0; height:100vh; display:flex; flex-direction:column;
+  justify-content:center; padding:64px 0}
+@media (max-width:960px){ .side{position:static; height:auto; padding:64px 0 8px; justify-content:flex-start} }
+.pf{width:72px; height:72px; border-radius:50%; overflow:hidden; background:var(--sunk);
+  border:1px solid var(--rule); display:flex; align-items:center; justify-content:center;
+  margin-bottom:22px; position:relative; flex:none}
+.pf img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.pf span{font-family:var(--serif); font-size:26px; color:var(--ink3)}
+.side h1{font-family:var(--serif); font-weight:400; font-size:clamp(36px,4.4vw,46px);
+  line-height:1.04; letter-spacing:-.02em; margin:0 0 10px}
+.side .role{font-family:var(--sans); font-size:15px; color:var(--ink2); margin:0 0 3px; line-height:1.5}
+.side .loc{font-family:var(--sans); font-size:15px; color:var(--ink3); margin:0}
+.side .avail{display:inline-flex; align-items:center; gap:8px; font-family:var(--sans);
+  font-size:13.5px; color:var(--accent); margin-top:18px}
+.side .avail i{width:6px; height:6px; border-radius:50%; background:var(--accent); flex:none}
+.side .blurb{font-size:17px; color:var(--ink2); margin:26px 0 0; max-width:34ch}
 
-hr{border:0; border-top:1px solid var(--rule); margin:52px 0}
+.snav{margin-top:38px; display:flex; flex-direction:column; gap:2px}
+.snav a{font-family:var(--sans); font-size:13px; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink3); padding:7px 0 7px 0; display:flex; align-items:center; gap:12px;
+  transition:color .3s ease}
+.snav a::before{content:""; width:20px; height:1px; background:var(--rule); transition:width .35s var(--ease), background .3s ease}
+.snav a:hover{color:var(--ink2)} .snav a:hover::before{width:34px; background:var(--ink3)}
+.snav a.on{color:var(--ink)} .snav a.on::before{width:44px; background:var(--accent)}
+@media (max-width:960px){ .snav{display:none} }
 
-p{margin:0 0 22px}
-p.lead{font-size:22px; line-height:1.55}
-em{font-style:italic}
+.sfoot{margin-top:auto; padding-top:34px; display:flex; gap:20px; font-family:var(--sans); font-size:14.5px}
+.sfoot a{color:var(--ink2); border-bottom:1px solid var(--rule); padding-bottom:2px; transition:color .3s, border-color .3s}
+.sfoot a:hover{color:var(--accent); border-color:var(--accent)}
+@media (max-width:960px){ .sfoot{margin-top:30px; padding-top:0} }
+
+/* ---------- content ---------- */
+main{padding:64px 0 120px; min-width:0}
+@media (max-width:960px){ main{padding:34px 0 80px} }
+section{margin-bottom:78px}
+section:last-child{margin-bottom:0}
+h2{font-family:var(--sans); font-weight:600; font-size:12px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink3); margin:0 0 26px;
+  display:flex; align-items:center; gap:14px}
+h2::after{content:""; flex:1; height:1px; background:var(--rule2)}
+p{margin:0 0 20px}
+p.lead{font-size:23px; line-height:1.5; margin-bottom:26px}
 strong{font-weight:500}
+main a.ln{color:var(--accent); border-bottom:1px solid var(--accent-soft); transition:border-color .3s}
+main a.ln:hover{border-color:var(--accent)}
 
-h2{font-family:var(--sans); font-weight:600; font-size:12.5px; letter-spacing:.14em;
-  text-transform:uppercase; color:var(--ink3); margin:0 0 24px}
-
-/* work entries */
-.w{padding:26px 0; border-bottom:1px solid var(--rule2)}
-.w:first-of-type{border-top:1px solid var(--rule2)}
-.w h3{font-family:var(--serif); font-weight:400; font-size:25px; letter-spacing:-.012em; margin:0 0 3px; line-height:1.25}
-.w .meta{font-family:var(--sans); font-size:13.5px; color:var(--ink3); margin:0 0 14px}
-.w p{font-size:18px; margin:0 0 14px; color:var(--ink2)}
-.w p strong{color:var(--ink)}
-.tools{font-family:var(--sans); font-size:13px; color:var(--ink3); line-height:1.7}
+/* ---------- project ---------- */
+.proj{background:var(--card); border:1px solid var(--rule); border-radius:10px;
+  padding:30px 32px; margin-bottom:22px; transition:border-color .4s var(--ease), transform .4s var(--ease)}
+.proj:hover{border-color:var(--ink3); transform:translateY(-2px)}
+@media (max-width:600px){ .proj{padding:24px 20px} }
+.proj h3{font-family:var(--serif); font-weight:400; font-size:26px; letter-spacing:-.012em; margin:0 0 18px; line-height:1.22}
+.ov{display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr)); gap:16px 20px;
+  padding:16px 0; margin-bottom:20px; border-top:1px solid var(--rule2); border-bottom:1px solid var(--rule2)}
+.ov dt{font-family:var(--sans); font-size:10.5px; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink3); margin-bottom:5px}
+.ov dd{margin:0; font-family:var(--sans); font-size:14.5px; color:var(--ink); line-height:1.4}
+.ov dd.hi{color:var(--accent); font-weight:600}
+.proj p{font-size:17.5px; color:var(--ink2); margin-bottom:15px}
+.proj p strong{color:var(--ink)}
+.proj p:last-of-type{margin-bottom:0}
+.shot{margin:0 0 20px; border-radius:7px; overflow:hidden; border:1px solid var(--rule2); display:block}
+.shot img{display:block; width:100%; height:auto}
+.tools{font-family:var(--sans); font-size:13px; color:var(--ink3); line-height:1.75;
+  padding-top:18px; margin-top:18px; border-top:1px solid var(--rule2)}
 .tools b{color:var(--ink2); font-weight:500}
 
-/* cv rows */
+/* ---------- cv ---------- */
 .cv{border-top:1px solid var(--rule2)}
-.cv div{display:grid; grid-template-columns:104px 1fr; gap:2px 20px; padding:15px 0; border-bottom:1px solid var(--rule2)}
+.cv > div{display:grid; grid-template-columns:112px 1fr; gap:2px 22px; padding:16px 0;
+  border-bottom:1px solid var(--rule2); transition:padding-left .4s var(--ease)}
+.cv > div:hover{padding-left:8px}
 .cv .y{font-family:var(--sans); font-size:13.5px; color:var(--ink3); padding-top:5px}
-.cv b{font-weight:500; font-size:19px; display:block}
-.cv span.s{font-family:var(--sans); font-size:14.5px; color:var(--ink2)}
-@media (max-width:520px){ .cv div{grid-template-columns:1fr; gap:0} }
+.cv b{font-weight:500; font-size:18.5px; display:block}
+.cv .s{font-family:var(--sans); font-size:14.5px; color:var(--ink2)}
+@media (max-width:520px){ .cv > div{grid-template-columns:1fr; gap:0} }
 
-.ends{font-family:var(--sans); font-size:14px; color:var(--ink3); margin-top:56px;
-  padding-top:24px; border-top:1px solid var(--rule)}
+.ends{font-family:var(--sans); font-size:14px; color:var(--ink3); line-height:1.75;
+  margin-top:46px; padding-top:22px; border-top:1px solid var(--rule)}
 
-.rv{opacity:0; transform:translateY(14px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
+.rv{opacity:0; transform:translateY(16px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
 .rv.in{opacity:1; transform:none}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1; transform:none; transition:none}
+  .proj,.cv > div{transition:none}
 }
 </style>
 </head>
 <body>
-<main class="page">
+<div class="shell">
 
-<header>
-  <div class="portrait rv">
+<aside class="side">
+  <div class="pf rv">
     <img src="/img/sujay.jpg" alt="Sujay Aryal" onerror="this.remove()">
     <span aria-hidden="true">SA</span>
   </div>
   <h1 class="rv">Sujay Aryal</h1>
-  <p class="role rv">Software engineer — full-stack, mobile, and the servers underneath</p>
-  <p class="where rv">Mumbai, India</p>
+  <p class="role rv">Software engineer — full-stack, mobile,<br>and the servers underneath</p>
+  <p class="loc rv">Mumbai, India</p>
   <p class="avail rv"><i></i>Available for remote contract work</p>
-</header>
+  <p class="blurb rv">I build software that people actually have to use, and then I keep it running.</p>
+  <nav class="snav rv">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#now">Now</a>
+    <a href="#background">Background</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="sfoot rv">
+    <a href="mailto:aryalsujay@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/sujayaryal/" rel="me noopener">LinkedIn</a>
+  </div>
+</aside>
 
-<hr>
+<main>
 
-<section class="rv">
-  <p class="lead">I build software that people actually have to use, and then I keep it running.</p>
-  <p>I grew up in Kathmandu and came to India on a scholarship to study engineering. I stayed. For the last six years I've been at the <strong>Vipassana Research Institute</strong> in Mumbai, building the systems a few hundred thousand people quietly depend on — mobile apps, a feedback platform used across five sites, the Linux servers behind all of it, and the course machines we configure here and courier out to centres.</p>
+<section id="about" class="rv">
+  <h2>About</h2>
+  <p class="lead">I grew up in Kathmandu and came to India on a scholarship to study engineering. I stayed.</p>
+  <p>For the last six years I've been at the <strong>Vipassana Research Institute</strong> in Mumbai, building the systems a few hundred thousand people quietly depend on — mobile apps, a feedback platform used across five sites, the Linux servers behind all of it, and the course machines we configure here and courier out to centres.</p>
   <p>Alongside that I take on contract work. Right now I'm the only engineer on a hospital ERP in western Nepal. I designed it, built it, deployed it, and I'm the one who hears about it when something breaks at nine in the evening.</p>
   <p>My master's research was on a narrower question: how do you make a language model answer from evidence rather than invention, and prove which evidence it used. That problem — making generated output trustworthy enough to actually ship — is what I'd like to spend the next few years on.</p>
 </section>
 
-<hr>
+<section id="work">
+  <h2 class="rv">Selected work</h2>
 
-<section class="rv">
+  <article class="proj rv">
+    <h3>A hospital ERP, running live in Nepal</h3>
+    <dl class="ov">
+      <div><dt>Role</dt><dd>Sole engineer</dd></div>
+      <div><dt>Client</dt><dd>Nova Hospital, Dhangadhi</dd></div>
+      <div><dt>Period</dt><dd>2026 — present</dd></div>
+      <div><dt>Status</dt><dd class="hi">Live in production</dd></div>
+    </dl>
+    <p>The hospital was managing purchasing, stock and requisitions on paper and spreadsheets. I replaced that with a system covering the whole chain: incoming goods across normal, lab and fixed-asset classes, purchase orders and vendors, a real-time stock register with expiry alerting, and <strong>multi-level requisition approval with PIN-based release</strong>, so every movement is authorised and auditable.</p>
+    <p>It speaks the local language of business too — Bikram Sambat dates, VAT reporting — because a system nobody can file with is a system nobody uses. I own the architecture, the deployment and the maintenance, and I ship to it most weeks based on what the staff tell me.</p>
+    <p class="tools"><b>Next.js 14</b> · TypeScript · Express · Prisma · PostgreSQL · Tailwind · React Query · VPS under PM2</p>
+  </article>
+
+  <article class="proj rv">
+    <h3>One platform where five were asked for</h3>
+    <dl class="ov">
+      <div><dt>Role</dt><dd>Design &amp; build</dd></div>
+      <div><dt>Scale</dt><dd>5 units, one system</dd></div>
+      <div><dt>Site traffic</dt><dd class="hi">2–3k daily, 20k peak</dd></div>
+      <div><dt>Status</dt><dd class="hi">Live in production</dd></div>
+    </dl>
+    <p>Five units each wanted their own feedback tool — the pagoda, the meditation centre, the guest house, the souvenir shop, the food court. Building five would have eaten the roadmap and left five things to maintain, so I built <strong>one configurable platform</strong> that serves all of them.</p>
+    <p>It collects by QR across a site taking two to three thousand visitors a day, and up to twenty thousand on festival days. Trustees get an automated weekly summary that nobody has to assemble by hand.</p>
+    <p class="tools"><b>React</b> · Node.js · MySQL · Linux · multi-tenant architecture</p>
+  </article>
+
+  <article class="proj rv">
+    <h3>Three apps, a hundred thousand installs</h3>
+    <dl class="ov">
+      <div><dt>Role</dt><dd>Owner, end to end</dd></div>
+      <div><dt>Installs</dt><dd class="hi">100,000+</dd></div>
+      <div><dt>Rating</dt><dd class="hi">4.7 ★ / 4.5 ★</dd></div>
+      <div><dt>Platforms</dt><dd>Android &amp; iOS</dd></div>
+    </dl>
+    <p>Vipassana Meditation, AT Vipassana and Global Vipassana Pagoda. I own the portfolio end to end — features, store releases on both platforms, and the troubleshooting when something misbehaves for someone in a different timezone.</p>
+    <p>The flagship is rated <strong>4.7 on Android across five thousand reviews</strong>, and 4.5 on iOS.</p>
+    <p class="tools"><b>React Native</b> · Play Console · App Store Connect · release management</p>
+  </article>
+
+  <article class="proj rv">
+    <h3>Making a model show its working</h3>
+    <dl class="ov">
+      <div><dt>Type</dt><dd>MSc thesis</dd></div>
+      <div><dt>Institution</dt><dd>Liverpool John Moores</dd></div>
+      <div><dt>Period</dt><dd>2025 — 2026</dd></div>
+      <div><dt>Result</dt><dd class="hi">Awarded Merit</dd></div>
+    </dl>
+    <p>Graph RAG grounds a model's answer in a subgraph pulled from a knowledge graph. Retrieve too little and the reasoning path is missing; retrieve too much and the noise pushes the model into inventing things. I built a layered pipeline — pruning by question context, expanding along the relations the question implies rather than blindly by hop count, then denoising twice.</p>
+    <p>Two-hop, relation-guided, turned out to be the sweet spot. The part I care about most: <strong>every answer traces back to the subgraph that produced it.</strong></p>
+    <p class="tools"><b>Python</b> · retrieval-augmented generation · knowledge graphs · LLM evaluation</p>
+  </article>
+</section>
+
+<section id="now" class="rv">
   <h2>What I'm doing now</h2>
-  <p>Running the Nova Hospital ERP in production and shipping to it most weeks, based on what the staff using it tell me.</p>
-  <p>Taking on a small number of remote contract engagements — I have roughly two focused hours a day outside my role at VRI, and I'd rather do one thing properly than three badly.</p>
+  <p>Running the Nova Hospital ERP in production and shipping to it most weeks.</p>
+  <p>Taking on a small number of remote contract engagements. I have roughly two focused hours a day outside my role at VRI, and I'd rather do one thing properly than three badly.</p>
   <p>Turning the retrieval work from my thesis into something deployed rather than written up.</p>
 </section>
 
-<hr>
-
-<section>
-  <h2 class="rv">Some things I've built</h2>
-
-  <article class="w rv">
-    <h3>A hospital ERP, running live in Nepal</h3>
-    <p class="meta">Nova Hospital, Dhangadhi · 2026 – present · sole engineer</p>
-    <p>The hospital was managing purchasing, stock and requisitions on paper and spreadsheets. I replaced that with a system covering the whole chain: incoming goods across normal, lab and fixed-asset classes, purchase orders and vendors, a real-time stock register with expiry alerting, and multi-level requisition approval with PIN-based release so every movement is authorised and auditable.</p>
-    <p>It speaks the local language of business too — <strong>Bikram Sambat dates, VAT reporting</strong> — because a system nobody can file with is a system nobody uses. I own the architecture, the deployment and the maintenance.</p>
-    <p class="tools"><b>Built with</b> Next.js 14 · TypeScript · Express · Prisma · PostgreSQL · Tailwind · React Query · deployed on VPS under PM2</p>
-  </article>
-
-  <article class="w rv">
-    <h3>One platform where five were asked for</h3>
-    <p class="meta">Vipassana Research Institute · Mumbai</p>
-    <p>Five units each wanted their own feedback tool — the pagoda, the meditation centre, the guest house, the souvenir shop, the food court. Building five would have eaten the roadmap and left five things to maintain, so I built <strong>one configurable platform</strong> that serves all of them.</p>
-    <p>It collects by QR across a site that takes two to three thousand visitors a day, and up to twenty thousand on festival days. Trustees get an automated weekly summary that nobody has to assemble by hand.</p>
-    <p class="tools"><b>Built with</b> React · Node.js · MySQL · Linux · multi-tenant architecture</p>
-  </article>
-
-  <article class="w rv">
-    <h3>Three apps, a hundred thousand installs</h3>
-    <p class="meta">Vipassana Meditation · AT Vipassana · Global Vipassana Pagoda</p>
-    <p>I own the portfolio end to end — features, store releases on both platforms, and the troubleshooting when something misbehaves for someone in a different timezone. The flagship carries <strong>100,000+ installs</strong>, rated 4.7 on Android across five thousand reviews and 4.5 on iOS.</p>
-    <p class="tools"><b>Built with</b> React Native · Play Console · App Store Connect</p>
-  </article>
-
-  <article class="w rv">
-    <h3>Making a model show its working</h3>
-    <p class="meta">MSc thesis, Liverpool John Moores University · awarded with Merit</p>
-    <p>Graph RAG grounds a model's answer in a subgraph pulled from a knowledge graph. Retrieve too little and the reasoning path is missing; retrieve too much and the noise pushes the model into inventing things. I built a layered pipeline — pruning by question context, expanding along the relations the question implies rather than blindly by hop count, then denoising twice.</p>
-    <p>Two-hop, relation-guided, turned out to be the sweet spot. The part I care about most: <strong>every answer traces back to the subgraph that produced it.</strong></p>
-    <p class="tools"><b>Built with</b> Python · retrieval-augmented generation · knowledge graphs</p>
-  </article>
-</section>
-
-<hr>
-
-<section class="rv">
-  <h2>Where I've been</h2>
+<section id="background" class="rv">
+  <h2>Background</h2>
   <div class="cv">
     <div><span class="y">2026 —</span><div><b>Software Engineer, ERP &amp; Operational Systems</b><span class="s">Nova Hospital, Nepal · freelance, remote</span></div></div>
     <div><span class="y">2020 —</span><div><b>Software Engineer, Applications &amp; Delivery</b><span class="s">Vipassana Research Institute, Mumbai · six years, four roles</span></div></div>
@@ -214,27 +274,44 @@ h2{font-family:var(--sans); font-weight:600; font-size:12.5px; letter-spacing:.1
   </div>
 </section>
 
-<hr>
-
-<section class="rv">
+<section id="contact" class="rv">
   <h2>Get in touch</h2>
-  <p>If you have something that needs building — or something that needs someone to actually own it in production — I'd be glad to hear about it. No obligation on either side; I'm happy to just talk it through.</p>
-  <p>Write to me at <a href="mailto:aryalsujay@gmail.com">aryalsujay@gmail.com</a>, or find me on <a href="https://www.linkedin.com/in/sujayaryal/" rel="me noopener">LinkedIn</a>.</p>
+  <p>If you have something that needs building — or something that needs someone to actually own it in production — I'd be glad to hear about it. No obligation on either side; happy to just talk it through.</p>
+  <p>Write to me at <a class="ln" href="mailto:aryalsujay@gmail.com">aryalsujay@gmail.com</a>, or find me on <a class="ln" href="https://www.linkedin.com/in/sujayaryal/" rel="me noopener">LinkedIn</a>.</p>
   <p class="ends">Mumbai, India · working across IST, European and US hours.<br>English, Hindi, Nepali. Long-time Vipassana practitioner, which is how I ended up here.</p>
 </section>
 
 </main>
+</div>
+
 <script>
 (function(){
-  var r = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var els = [].slice.call(document.querySelectorAll(".rv"));
-  if(r || !("IntersectionObserver" in window)){ els.forEach(function(e){e.classList.add("in");}); return; }
-  var head = [].slice.call(document.querySelectorAll("header .rv, header ~ hr + section.rv"));
-  head.forEach(function(e,i){ e.style.transitionDelay = (0.07*i)+"s"; });
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, {rootMargin:"0px 0px -8% 0px", threshold:.08});
-  els.forEach(function(e){ io.observe(e); });
+  if(reduce || !("IntersectionObserver" in window)){
+    els.forEach(function(e){ e.classList.add("in"); });
+  } else {
+    [].slice.call(document.querySelectorAll(".side .rv")).forEach(function(e,i){
+      e.style.transitionDelay = (0.06*i)+"s";
+    });
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {rootMargin:"0px 0px -6% 0px", threshold:.06});
+    els.forEach(function(e){ io.observe(e); });
+  }
+  var links = [].slice.call(document.querySelectorAll(".snav a"));
+  if("IntersectionObserver" in window){
+    var spy = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(a){ a.classList.toggle("on", a.getAttribute("href") === "#"+e.target.id); });
+        }
+      });
+    }, {rootMargin:"-40% 0px -55% 0px"});
+    ["about","work","now","background","contact"].forEach(function(id){
+      var s = document.getElementById(id); if(s) spy.observe(s);
+    });
+  }
 })();
 </script>
 </body>
