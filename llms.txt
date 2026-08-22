@@ -1,0 +1,34 @@
+# Sujay Aryal
+
+> Software engineer based in Mumbai, India. Builds and operates production systems end to end —
+> web, mobile and infrastructure. Available for remote contract work.
+> Contact: aryalsujay@gmail.com · https://www.linkedin.com/in/sujayaryal/
+
+## Summary
+
+Sujay Aryal is a software engineer with six years of experience shipping and operating production
+software. He is the sole architect of a hospital inventory and supply-chain ERP running live at Nova
+Hospital in Dhangadhi, Nepal, covering purchase orders, real-time stock control, multi-level
+requisition approvals, VAT reporting and the Nepali Bikram Sambat calendar. He owns its architecture,
+deployment and ongoing maintenance.
+
+At the Vipassana Research Institute in Mumbai he has worked across applications and infrastructure
+since 2020, building a multi-tenant visitor feedback platform serving five organisational units, and
+owning three React Native applications with more than 100,000 combined installs.
+
+His MSc research at Liverpool John Moores University, awarded with Merit, addressed hallucination
+reduction in Graph RAG retrieval through context-aware pruning, relation-guided expansion and
+dual-stage denoising.
+
+## Technologies
+
+TypeScript, Next.js, React, React Native, Node.js, Express.js, PostgreSQL, Prisma ORM, MySQL,
+Python, Tailwind CSS, React Query, PM2, Linux server administration, retrieval-augmented generation.
+
+## Availability
+
+Available for remote contract engagements. Works across IST, European and US hours.
+
+## Pages
+
+- [Home](https://aryal.in/): full profile, selected work, capabilities and background.
