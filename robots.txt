@@ -32,3 +32,5 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://aryal.in/sitemap.xml
+
+# IndexNow key: 3166088f8ae585cabc762010ab8bd464
