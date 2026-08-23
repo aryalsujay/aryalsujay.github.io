@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building a toy that survives going viral — Sujay Aryal</title>
+<meta name="description" content="A weekend web toy has a brutal traffic shape: nothing, then thousands of concurrent users, then nothing. Here is how I built one that stays inside a free tier by making the CDN do the fan-out.">
+<link rel="canonical" href="https://aryal.in/hold.html">
+<meta name="author" content="Sujay Aryal">
+<meta name="theme-color" content="#f6f4f1">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aryal.in/hold.html">
+<meta property="og:title" content="Building a toy that survives going viral">
+<meta property="og:description" content="Ten thousand people polling every two seconds is five thousand requests a second. Here is how that becomes one.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/img/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#f6f4f1; --card:#fffefc; --sunk:#efece7;
+  --ink:#191714; --ink2:#585149; --ink3:#8d857a;
+  --rule:#e2ded7; --rule2:#eae6e0; --accent:#2d5a52;
+  --serif:"Newsreader",Georgia,serif; --sans:"Karla",-apple-system,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --paper:#14130f; --card:#1b1915; --sunk:#100f0c;
+    --ink:#f0ede7; --ink2:#a9a196; --ink3:#7d766b;
+    --rule:#2c2924; --rule2:#232019; --accent:#7fbdaf; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:19px;line-height:1.68;-webkit-font-smoothing:antialiased}
+.page{max-width:660px;margin:0 auto;padding:0 26px 100px}
+a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+a:hover{color:var(--accent);border-color:var(--accent)}
+.back{font-family:var(--sans);font-size:14px;color:var(--ink3);border:0;display:inline-block;padding:44px 0 0}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(34px,6vw,50px);line-height:1.07;
+  letter-spacing:-.02em;margin:26px 0 14px}
+.meta{font-family:var(--sans);font-size:14.5px;color:var(--ink3);margin:0 0 8px}
+.lede{font-size:22px;line-height:1.55;color:var(--ink2);margin:22px 0 0}
+hr{border:0;border-top:1px solid var(--rule);margin:44px 0}
+h2{font-family:var(--sans);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink3);margin:46px 0 18px}
+p{margin:0 0 22px}
+strong{font-weight:500}
+em{font-style:italic}
+pre{font-family:var(--mono);font-size:13.5px;line-height:1.7;background:var(--sunk);
+  border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:5px;
+  padding:16px 18px;overflow-x:auto;margin:24px 0}
+code{font-family:var(--mono);font-size:.86em;background:var(--sunk);padding:2px 5px;border-radius:3px}
+pre code{background:none;padding:0;font-size:1em}
+ul{margin:0 0 22px;padding-left:22px} li{margin-bottom:9px}
+blockquote{margin:26px 0;padding:2px 0 2px 20px;border-left:2px solid var(--accent);
+  color:var(--ink2);font-style:italic}
+.box{background:var(--card);border:1px solid var(--rule);border-radius:7px;padding:20px 22px;margin:26px 0;font-size:17.5px}
+.box p:last-child{margin-bottom:0}
+.box .l{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+table{border-collapse:collapse;width:100%;font-size:16px;margin:24px 0}
+th{font-family:var(--sans);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--ink3);
+  text-align:left;padding:8px 14px 8px 0;border-bottom:1px solid var(--rule);font-weight:600}
+td{padding:10px 14px 10px 0;border-bottom:1px solid var(--rule2);vertical-align:top}
+td.m{font-family:var(--mono);font-size:14px;white-space:nowrap}
+.ends{font-family:var(--sans);font-size:15px;color:var(--ink2);margin-top:52px;padding-top:24px;border-top:1px solid var(--rule)}
+</style>
+</head>
+<body>
+<article class="page">
+<a class="back" href="/">← Sujay Aryal</a>
+
+<h1>Building a toy that survives going viral</h1>
+<p class="meta">August 2026 · about a nine minute read</p>
+<p class="lede">A weekend web toy has a brutal traffic shape: nothing at all, then thousands of concurrent users inside ten minutes, then nothing again. Free tiers do not forgive that. Here is how I built one that stays inside them.</p>
+
+<hr>
+
+<p>I built <a href="https://hold-theta.vercel.app">HOLD</a> in a weekend. One crown exists. Whoever took it last holds it, and a timer counts their reign. Anyone can take it — but you have to press and hold for three seconds, and once you lose it you sit out for a minute. Longest single reign wins.</p>
+
+<p>That is the entire game, and the game is not the interesting part. <strong>The interesting part is that a toy like this either gets almost no traffic or a frightening amount of it, with very little in between</strong> — and the version that gets the frightening amount usually falls over, or quietly runs up a bill, at exactly the moment it is working.</p>
+
+<p>One Million Checkboxes is the canonical example. Nolen Royalty expected a few hundred visitors and got 650 million interactions in a fortnight. If you are building this kind of thing, you are writing software for a distribution you cannot predict, on infrastructure you are not paying for.</p>
+
+<h2>The naive design, and why it fails</h2>
+
+<p>The obvious way to build a live shared leaderboard is websockets. Everyone connects, the server pushes changes, everybody sees the same thing instantly. It is the correct answer on a long-running server you control.</p>
+
+<p>It is a bad answer on serverless. Serverless platforms bill and scale around short requests, not thousands of connections held open for hours. You end up fighting the execution model, and the free tier disappears fast.</p>
+
+<p>So: polling. Every client asks "who holds the crown?" every couple of seconds. Simple, stateless, and it fits the platform. Except the arithmetic is unpleasant:</p>
+
+<pre><code>10,000 concurrent users
+÷ 2 second poll interval
+= 5,000 requests per second
+
+Upstash free tier: 10,000 commands per day
+Time to exhaust it: about two seconds</code></pre>
+
+<p>That is the whole problem in four lines. The database is not slow — it is simply never meant to see a crowd this size for a payload this trivial.</p>
+
+<h2>Let the CDN do the fan-out</h2>
+
+<p>The thing worth noticing is that <strong>every one of those 5,000 requests wants the identical answer.</strong> There is one crown. Everybody is asking the same question, and the answer is a few dozen bytes.</p>
+
+<p>So it should be cached — not in the application, but at the edge, in front of it:</p>
+
+<pre><code>export async function GET() {
+  const state = await readFromRedis();
+  return new Response(JSON.stringify(state), {
+    headers: {
+      'content-type': 'application/json',
+      'cache-control': 'public, s-maxage=1, stale-while-revalidate=4',
+    },
+  });
+}</code></pre>
+
+<p><code>s-maxage=1</code> tells the CDN it may serve this response to everyone for one second. <code>stale-while-revalidate=4</code> says that if it is a little older than that, serve it anyway and refresh in the background — so nobody ever waits on a cache miss.</p>
+
+<p>The arithmetic changes completely:</p>
+
+<pre><code>10,000 users × 0.5 requests/second = 5,000 req/s at the edge
+                                   =     1 req/s at the origin
+
+Redis load: unchanged whether ten people are playing
+            or ten thousand</code></pre>
+
+<div class="box">
+  <span class="l">The trade</span>
+  <p>State can be up to a second stale. For a leaderboard where reigns are measured in minutes and hours, that is invisible. <strong>I traded one second of accuracy for four orders of magnitude of headroom</strong>, and it is the single decision that makes the whole thing viable on a free tier.</p>
+</div>
+
+<p>Five consecutive requests against production, straight after deploying:</p>
+
+<pre><code>MISS → HIT → STALE → HIT → STALE</code></pre>
+
+<p>Only the first touched the origin. Everything after came from the edge.</p>
+
+<h2>Counting people without storing people</h2>
+
+<p>"N here now" is the small piece of theatre that makes a live page feel live. The naive implementation is a set of session IDs, which grows with your traffic — precisely the wrong shape.</p>
+
+<p>Redis has a better answer. <strong>HyperLogLog</strong> is a probabilistic counter: it will tell you roughly how many distinct things it has seen, using a fixed twelve kilobytes, whether that is a hundred people or ten million. The error is around 0.8%, which for a number in the corner of a screen is not error at all.</p>
+
+<pre><code>PFADD  seen:&lt;minute&gt;  &lt;session-id&gt;
+PFCOUNT seen:&lt;minute&gt;</code></pre>
+
+<p>Bucketed by the minute and expired after three, so it stays a rolling count and cleans up after itself.</p>
+
+<h2>Making cheating boring</h2>
+
+<p>A game where a single HTTP request wins dies within an hour of going viral. Somebody writes twelve lines of Python, the leaderboard fills with a machine, and every human leaves. So the first question is not "how do I stop bots" but <strong>"how do I make botting dull enough that nobody bothers?"</strong></p>
+
+<p>Three things, none of them clever:</p>
+
+<ul>
+<li><strong>Hold, don't click.</strong> Three seconds of continuous pointer contact. The client reports how long it held; the server rejects anything under the threshold. It does not stop a scripted client — it means a bot has to wait three seconds too, which removes the entire advantage of being a bot.</li>
+<li><strong>A cooldown on the loser.</strong> Sixty seconds before whoever just lost the crown can take it back, keyed to their session. This stops two accounts trading it back and forth and, more importantly, gives the crown time to feel <em>held</em>.</li>
+<li><strong>Per-IP rate limiting.</strong> Twenty attempts a minute, as a fixed window in Redis.</li>
+</ul>
+
+<p>None of this survives a determined attacker with a residential proxy pool. That was never the goal. <strong>The goal is that the marginal reward for cheating is lower than the effort</strong>, and against that bar it holds up.</p>
+
+<h2>What I would do differently</h2>
+
+<p>The hold-duration check trusts a number the client sends. A scripted client can lie about it. I could sign a server-issued token at press-start and verify the elapsed time server-side — it is maybe thirty lines. I left it out because the failure mode is somebody cheating at a toy, and shipping this weekend was worth more than closing that hole.</p>
+
+<p>The other thing: the leaderboard only records a reign when it <em>ends</em>. If somebody takes the crown and the game goes quiet for six hours, their reign is real but invisible until someone dethrones them. Fixing that properly needs a scheduled job, which is a lot of machinery for an edge case.</p>
+
+<p>Both of those are the correct kind of shortcut. They are documented, they are bounded, and neither of them is load-bearing.</p>
+
+<h2>The shape of the whole thing</h2>
+
+<table>
+  <tr><th>Concern</th><th>Approach</th></tr>
+  <tr><td>Live state for many readers</td><td class="m">Edge cache, s-maxage=1</td></tr>
+  <tr><td>Presence counting</td><td class="m">HyperLogLog, fixed 12 KB</td></tr>
+  <tr><td>Write contention</td><td class="m">Uncached, rate limited</td></tr>
+  <tr><td>Bot resistance</td><td class="m">Hold-to-act + cooldown</td></tr>
+  <tr><td>Diagnosis</td><td class="m">/api/health</td></tr>
+</table>
+
+<p>That last row earned its place the hard way. The first deploy returned blank 500s with no error text, and I spent longer than I would like admitting reading logs that said <code>"message": ""</code>. So I added a health endpoint that reports, in plain words, whether the environment variables are present, whether the URL is well formed, and whether it can reach Redis. It found the problem in one request.</p>
+
+<blockquote>If a system can fail in production, it should be able to explain how it failed without you reading its source code.</blockquote>
+
+<h2>Was it worth a weekend?</h2>
+
+<p>Honestly, most things like this get almost no traffic. That is the base rate and no amount of craft changes it — Royalty expected a few hundred visitors.</p>
+
+<p>But the interesting engineering here had nothing to do with whether anyone plays. <strong>Making a CDN absorb a crowd on behalf of a database is a real technique</strong>, and it applies to any read-heavy endpoint where everybody wants the same answer: a status page, a live score, a stock ticker, a queue position. The toy was just a cheap excuse to build the thing properly.</p>
+
+<p>Play it at <a href="https://hold-theta.vercel.app">hold-theta.vercel.app</a>. The source is on <a href="https://github.com/aryalsujay/hold">GitHub</a>.</p>
+
+<p class="ends">I build and run production software end to end — most recently a hospital ERP live in Nepal, and three React Native apps with 100,000+ installs. Available for remote contract work. <a href="/">More about me</a> · <a href="mailto:aryalsujay@gmail.com">aryalsujay@gmail.com</a></p>
+</article>
+</body>
+</html>

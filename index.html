@@ -255,6 +255,20 @@ main a.ln:hover{border-color:var(--accent)}
   </article>
 
   <article class="proj rv">
+    <h3>HOLD — a live toy built to survive going viral</h3>
+    <dl class="ov">
+      <div><dt>Role</dt><dd>Sole engineer</dd></div>
+      <div><dt>Built in</dt><dd>One weekend</dd></div>
+      <div><dt>Origin load</dt><dd class="hi">~1 req/sec at any scale</dd></div>
+      <div><dt>Status</dt><dd class="hi">Live</dd></div>
+    </dl>
+    <p>One crown, one button, longest reign wins. The game is not the point — the traffic shape is. A toy like this goes from nothing to thousands of concurrent users in minutes, and free tiers do not forgive that.</p>
+    <p>Ten thousand people polling every two seconds is five thousand requests a second. <strong>By caching reads at the edge for one second, that becomes one request a second at the origin</strong> — the CDN absorbs the crowd and the database never sees it. Presence uses HyperLogLog, so the live visitor count costs a fixed 12&nbsp;KB whether ten people show up or ten million.</p>
+    <p><a class="ln" href="/hold.html">Read how it was built</a> · <a class="ln" href="https://hold-theta.vercel.app" rel="noopener">play it</a> · <a class="ln" href="https://github.com/aryalsujay/hold" rel="noopener">source</a></p>
+    <p class="tools"><b>Next.js</b> · edge caching · Redis · HyperLogLog · rate limiting</p>
+  </article>
+
+  <article class="proj rv">
     <h3>An open-source Nepali calendar library</h3>
     <dl class="ov">
       <div><dt>Type</dt><dd>Open source</dd></div>
